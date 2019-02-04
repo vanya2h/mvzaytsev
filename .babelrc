@@ -1,0 +1,22 @@
+{
+  "presets": [["next/babel", { "preset-env": { "modules": "commonjs" } }]],
+  "plugins": [
+    "@babel/plugin-transform-runtime",
+    "transform-class-properties",
+    "transform-function-bind",
+    [
+      "module-resolver",
+      {
+        "root": ["./src"],
+        "alias": {
+          "@components": ["./components"],
+          "@utils": ["./utils"],
+          "@theme": ["./theme"],
+          "@root": ["./"],
+          "@static": ["./static"],
+          "@providers": ["./providers"]
+        }
+      }
+    ]
+  ]
+}

@@ -1,0 +1,77 @@
+@import "~@theme/common";
+@import "~@theme/spacings";
+@import "~@theme/colors";
+@import "~@theme/responsive";
+@import "~@theme/breakpoints";
+
+html {
+  font-size: @font-size;
+  &:global(.normal) {
+    font-size: @font-size;
+  }
+  &:global(.extra) {
+    font-size: @font-size-extra;
+  }
+  &:global(.blindness) {
+    font-size: @font-size-extra;
+    * {
+      background: white !important;
+      border-color: black !important;
+    }
+  }
+}
+body {
+  font-family: @font-family;
+  min-width: 100vw;
+  min-height: 100vh;
+  line-height: @line-height;
+  background: white;
+}
+
+a {
+  color: @blue;
+  border-bottom: 1px solid fadeout(@blue, 80%);
+  text-decoration: none;
+  &:hover {
+    border-color: fadeout(@blue, 50%);
+  }
+}
+
+.main {
+  flex-grow: 1;
+}
+.sidebar {
+  width: 250px;
+  background: @emerald;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  min-height: 100%;
+  border: 1px solid @emerald;
+}
+.page {
+  padding-left: 250px;
+  min-height: 100vh;
+}
+
+.container {
+  margin: auto;
+  width: 100%;
+  max-width: 970px;
+}
+
+.page-transition-enter {
+  opacity: 0;
+}
+.page-transition-enter-active {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+.page-transition-exit {
+  opacity: 1;
+}
+.page-transition-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}
