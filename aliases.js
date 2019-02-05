@@ -7,5 +7,6 @@ module.exports = {
 	"@theme": path.resolve("theme"),
 	"@utils": path.resolve("utils"),
 	"@providers": path.resolve("providers"),
-	"@pages": path.resolve("pages")
+	"@pages": path.resolve("pages"),
+	"@store": path.resolve("store")
 };

@@ -2,9 +2,9 @@ import colors from "colors";
 import express from "express";
 import next from "next";
 import cookieParser from "cookie-parser";
-import { getEnvConfig } from "../utils";
+import { config } from "../utils";
 
-const envConfig = getEnvConfig(process.env.NODE_ENV);
+const envConfig = config;
 
 const dev = process.env.NODE_ENV !== "production";
 

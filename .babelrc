@@ -14,7 +14,8 @@
           "@theme": ["./theme"],
           "@root": ["./"],
           "@static": ["./static"],
-          "@providers": ["./providers"]
+          "@providers": ["./providers"],
+          "@store": ["./store"]
         }
       }
     ]

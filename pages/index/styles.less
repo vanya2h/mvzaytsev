@@ -1,18 +1,93 @@
+@import "~@theme/colors";
+
 .left {
   flex: 4 1 0;
 }
 
 .right {
-  flex: 5 1 0;
+  flex: 4 1 0;
+}
+
+.main {
+  .right {
+    background: #ffeff2;
+  }
+
+  .head {
+    flex: 1 1 0;
+    background: #ffeff2;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 0.8rem;
+  }
+}
+
+.advantages {
+  .content {
+    flex: 1 1 0;
+  }
+  .photo {
+    flex: 1 1 0;
+    position: relative;
+    min-height: 350px;
+  }
+}
+
+.advantage {
+  .content {
+    position: relative;
+    background-size: contain;
+    padding: 3.5rem;
+    background-position: bottom center;
+    .decor {
+      width: 64px;
+      height: 64px;
+      position: absolute;
+      &.n1 {
+        right: 0;
+        top: 0;
+      }
+      &.n2 {
+        right: 60px;
+        top: -20px;
+      }
+      &.n3 {
+        left: 0;
+        top: 0;
+      }
+      &.n4 {
+        right: 50px;
+        bottom: 0;
+      }
+      &.n5 {
+        right: 40px;
+        bottom: 0;
+      }
+      &.n6 {
+        right: 110px;
+        bottom: -20px;
+      }
+    }
+  }
+}
+
+.placeholder {
   background: #ffeff2;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  &.n2 {
+    right: 0;
+    left: auto;
+  }
 }
 
 .title {
-  flex: 1 1 0;
-  background: #ffeff2;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  text-transform: uppercase;
-  letter-spacing: 5px;
-  font-size: 0.8rem;
+  text-align: center;
+  .icon {
+    margin-right: 20px;
+    color: @emerald;
+  }
 }
