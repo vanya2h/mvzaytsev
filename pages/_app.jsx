@@ -33,10 +33,11 @@ class MyApp extends App {
 		return (
 			<Container>
 				<aside className={styles.sidebar}>
-					<div className="p2">
+					<div className="p2 flex">
 						<Sidebar />
 					</div>
 				</aside>
+
 				<div className={cl(styles.page, "flex")}>
 					<div className="flex flex-column grow-1">
 						<header>
@@ -44,6 +45,7 @@ class MyApp extends App {
 								<Header />
 							</div>
 						</header>
+						{Component.before}
 						<div className={cl(styles.main, "grow-1")}>
 							<div className={cl(styles.container, "p2")}>
 								<PageTransition timeout={300} classNames="page-transition">

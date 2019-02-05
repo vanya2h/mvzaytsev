@@ -6,6 +6,7 @@
 
 html {
   font-size: @font-size;
+  color: @chocolate;
   &:global(.normal) {
     font-size: @font-size;
   }
@@ -13,10 +14,21 @@ html {
     font-size: @font-size-extra;
   }
   &:global(.blindness) {
-    font-size: @font-size-extra;
     * {
       background: white !important;
       border-color: black !important;
+      &:not(a) {
+        color: black !important;
+      }
+      a {
+        color: @blue;
+        border-width: 2px !important;
+        border-color: lighten(@blue, 40%) !important;
+        &:hover {
+          color: darken(@blue, 10%);
+          border-color: @blue !important;
+        }
+      }
     }
   }
 }
@@ -41,18 +53,23 @@ a {
   flex-grow: 1;
 }
 .sidebar {
-  width: 250px;
-  background: @emerald;
+  width: 220px;
+  background: #382e2e;
   position: fixed;
   left: 0;
   top: 0;
+  display: flex;
   height: 100vh;
   min-height: 100%;
-  border: 1px solid @emerald;
+  color: white;
+  border: 1px solid #382e2e;
 }
 .page {
-  padding-left: 250px;
+  padding-left: 220px;
   min-height: 100vh;
+  header {
+    background: @pale-cherry;
+  }
 }
 
 .container {

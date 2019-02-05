@@ -1,0 +1,39 @@
+@import "~@theme/colors";
+
+.button {
+  display: inline-block;
+  zoom: 1;
+  white-space: nowrap;
+  vertical-align: middle;
+  text-align: center;
+  cursor: pointer;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transition: 0.2s all ease-in-out;
+  outline: none;
+
+  background: @pale-cherry;
+  color: @chocolate;
+  border: 1px solid transparent;
+  padding: 0.6rem 1.5rem;
+
+  .icon {
+    margin-right: 0.6rem;
+  }
+
+  &:hover {
+    background: darken(@pale-cherry, 2%);
+  }
+
+  &.primary {
+    color: white;
+    background: @emerald;
+    &:hover,
+    &:active {
+      background: lighten(@emerald, 10%);
+    }
+  }
+}

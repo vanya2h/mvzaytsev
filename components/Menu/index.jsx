@@ -32,9 +32,9 @@ Menu.defaultProps = {
 
 export default Menu;
 
-class MenuItemClass extends React.Component {
+export class MenuItem extends React.Component {
 	render = () => {
-		const { children, active, className, icon, ...rest } = this.props;
+		const { children, link, active, className, icon, ...rest } = this.props;
 
 		return (
 			<li
@@ -44,30 +44,22 @@ class MenuItemClass extends React.Component {
 				{...rest}
 			>
 				{icon && <span className={styles.icon}>{icon}</span>}
-				{children}
+				{link ? (
+					<Link href={link}>
+						<a>{children}</a>
+					</Link>
+				) : (
+					children
+				)}
 			</li>
 		);
 	};
 }
 
-MenuItemClass.propTypes = {
+MenuItem.propTypes = {
 	icon: PropTypes.element
 };
 
-MenuItemClass.defaultProps = {
+MenuItem.defaultProps = {
 	icon: null
-};
-
-export const MenuItem = props => {
-	if (props.link) {
-		return (
-			<Link href={props.link}>
-				<a>
-					<MenuItemClass {...props} />
-				</a>
-			</Link>
-		);
-	}
-
-	return <MenuItemClass {...props} />;
 };

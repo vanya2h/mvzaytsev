@@ -1,0 +1,34 @@
+@import "~@theme/colors";
+
+.wrapper {
+  color: @pale-cherry;
+  display: flex;
+  flex-direction: column;
+
+  .top {
+    flex-grow: 1;
+  }
+  a {
+    color: @pale-cherry;
+    border-color: fadeout(@pale-cherry, 65%);
+    &:hover {
+      border-color: fadeout(@pale-cherry, 30%);
+    }
+  }
+}
+
+.description {
+  color: darken(white, 30%);
+  font-size: 0.9rem;
+}
+
+.icon {
+  color: fadeout(@pale-cherry, 50%);
+  float: right;
+}
+
+.students {
+  .emoji {
+    margin-left: 0.5rem;
+  }
+}

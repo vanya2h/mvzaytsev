@@ -80,11 +80,10 @@ class ThemeProviderClass extends React.PureComponent {
 			</themeContext.Provider>
 		);
 	};
+	static propTypes = {
+		children: PropTypes.element.isRequired
+	};
 }
-
-ThemeProviderClass.propTypes = {
-	children: PropTypes.element.isRequired
-};
 
 export const ThemeProvider = ThemeProviderClass;
 
