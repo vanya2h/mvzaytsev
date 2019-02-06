@@ -1,6 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import Heading from "@components/Heading";
+import { resolveAttachmentUrl } from "@utils/resolveAttachmentUrl";
 import Text from "@components/Text";
 import Attachment from "@components/Attachment";
 import styles from "./styles";
@@ -19,7 +20,9 @@ const TeacherCarePage = () => (
 				download={false}
 				type="pdf"
 				title="Выгорание учителя"
-				url="2ed80acc1a0520b30627b7c0c58493161549441707425.pdf"
+				url={resolveAttachmentUrl(
+					"2ed80acc1a0520b30627b7c0c58493161549441707425.pdf"
+				)}
 			/>
 			<Attachment
 				download={false}
