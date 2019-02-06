@@ -46,11 +46,11 @@ class Sidebar extends React.PureComponent {
 								Родителям
 							</MenuItem>
 							<MenuItem
-								link="/studentscare"
+								link="/teacherscare"
 								icon={<Bookopen className={styles.icon} size={18} />}
 							>
 								<span className={styles.students}>
-									<span>Ученикам</span>
+									<span>Учителям</span>
 									<span className={styles.emoji}>🤗</span>
 								</span>
 							</MenuItem>
