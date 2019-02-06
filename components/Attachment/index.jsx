@@ -19,7 +19,9 @@ class Attachment extends React.PureComponent {
 						{title}
 					</a>
 				</Heading>
-				<Text className={styles.description}>{description}</Text>
+				{description && (
+					<Text className={styles.description}>{description}</Text>
+				)}
 			</div>
 		);
 	};

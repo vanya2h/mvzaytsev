@@ -46,7 +46,9 @@ export class MenuItem extends React.Component {
 				{icon && <span className={styles.icon}>{icon}</span>}
 				{link ? (
 					<Link href={link}>
-						<a>{children}</a>
+						<a>
+							<span>{children}</span>
+						</a>
 					</Link>
 				) : (
 					children

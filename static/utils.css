@@ -14,3 +14,11 @@
 .height-100-percent {
   height: 100%;
 }
+
+.spaced-list > * {
+  margin-bottom: 1.5rem;
+}
+
+.spaced-list > *:last-child {
+  margin-bottom: 0;
+}

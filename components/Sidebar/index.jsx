@@ -4,6 +4,7 @@ import cl from "classnames";
 import Link from "next/link";
 import Home from "react-feather/dist/icons/home";
 import Bookopen from "react-feather/dist/icons/book-open";
+import UsersIcon from "react-feather/dist/icons/users";
 import LoginIcon from "react-feather/dist/icons/log-in";
 import Book from "react-feather/dist/icons/book";
 import { connect } from "react-redux";
@@ -55,6 +56,12 @@ class Sidebar extends React.PureComponent {
 								</span>
 							</MenuItem>
 							<MenuItem
+								link="/studentscare"
+								icon={<UsersIcon className={styles.icon} size={18} />}
+							>
+								Ученикам
+							</MenuItem>
+							<MenuItem
 								link="/diary"
 								icon={<Book className={styles.icon} size={18} />}
 							>
@@ -65,6 +72,12 @@ class Sidebar extends React.PureComponent {
 								icon={<UserIcon className={styles.icon} size={18} />}
 							>
 								Портфолио
+							</MenuItem>
+							<MenuItem
+								link="/teacherofyear"
+								icon={<UserIcon className={styles.icon} size={18} />}
+							>
+								Учитель года 2019 👨
 							</MenuItem>
 						</Menu>
 					</div>
