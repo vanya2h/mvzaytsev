@@ -58,10 +58,12 @@ const IndexPage = () => (
 							Я люблю свой класс 🙌
 						</Heading>
 						<Text>
-							Текст-заглушка. Lorem ipsum dolor sit amet consectetur adipisicing
-							elit. Error rem, aliquam recusandae similique corrupti minima
-							itaque vel atque nemo asperiores repellendus molestiae qui nihil
-							accusamus praesentium consequuntur dolores eveniet deleniti!
+							{
+								"Мысль подрастающего поколения, надо крепко держать ее в руках, если не хочешь выпустить из рук будущее"
+							}
+						</Text>
+						<Text>
+							- <b>Анри Барбюс</b>
 						</Text>
 						<div className={cl(styles.decor, styles.n3)}>
 							<img src={require("./img/smile.png")} width="100%" />
@@ -97,10 +99,12 @@ const IndexPage = () => (
 							Спорт - неотъемлемая часть 😤
 						</Heading>
 						<Text>
-							Текст-заглушка. Lorem ipsum dolor sit amet consectetur adipisicing
-							elit. Error rem, aliquam recusandae similique corrupti minima
-							itaque vel atque nemo asperiores repellendus molestiae qui nihil
-							accusamus praesentium consequuntur dolores eveniet deleniti!
+							{
+								"Спорт становится средством воспитания тогда, когда он любимое занятие каждого."
+							}
+						</Text>
+						<Text>
+							- <b>Василий Александрович Сухомлинский</b>
 						</Text>
 					</div>
 				</div>
