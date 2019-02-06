@@ -78,10 +78,43 @@ a {
   }
 }
 
+.footer {
+  background: lighten(@chocolate, 5%);
+  padding: 1rem 0;
+  color: lighten(@chocolate, 30%);
+  a {
+    color: lighten(@chocolate, 60%);
+    border-color: lighten(@chocolate, 60%);
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+.content {
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+}
+
 .container {
   margin: auto;
   width: 100%;
   max-width: 970px;
+}
+
+.hero {
+  background: linear-gradient(
+    to right,
+    darken(@chocolate, 2%),
+    fadeout(@chocolate, 10%)
+  );
+  color: @pale-cherry;
+  padding: 3rem 0;
+  .description {
+    margin: 0;
+    opacity: 0.7;
+    font-size: 1.3rem;
+  }
 }
 
 :global(.page-transition-enter) {

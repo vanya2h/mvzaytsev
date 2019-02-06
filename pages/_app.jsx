@@ -7,8 +7,9 @@ import Loader from "@components/Loader";
 import { compose } from "@utils/compose";
 import { createStoreEntity } from "@store";
 import { withAuth } from "@HOC/withAuth";
+import Heading from "@components/Heading";
+import Text from "@components/Text";
 import withRedux from "next-redux-wrapper";
-import Footer from "@components/Footer";
 import Sidebar from "@components/Sidebar";
 import { Provider } from "react-redux";
 import { withThemeProvider } from "@providers/theme";
@@ -51,6 +52,18 @@ class MyApp extends App {
 								</div>
 							</header>
 							{Component.before}
+							{Component.hero && (
+								<div className={styles.hero}>
+									<div className={styles.container}>
+										<Heading className={styles.title} size={1}>
+											{Component.hero.title}
+										</Heading>
+										<Text className={styles.description}>
+											{Component.hero.description}
+										</Text>
+									</div>
+								</div>
+							)}
 							<div
 								className={cl(styles.main, "grow-1", {
 									[styles.centered]: Component.centered
@@ -68,15 +81,12 @@ class MyApp extends App {
 										}}
 										loadingClassNames="loading-indicator"
 									>
-										<Component {...pageProps} />
+										<div className={styles.content}>
+											<Component {...pageProps} />
+										</div>
 									</PageTransition>
 								</div>
 							</div>
-							<footer className={styles.footer}>
-								<div className={cl(styles.container, "p2")}>
-									<Footer />
-								</div>
-							</footer>
 						</div>
 					</div>
 				</Provider>

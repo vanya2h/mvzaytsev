@@ -1,36 +1,14 @@
 import React from "react";
 import Head from "next/head";
-import Heading from "@components/Heading";
 import Text from "@components/Text";
-import Attachment from "@components/Attachment";
-import { resolveAttachmentUrl } from "@utils/resolveAttachmentUrl";
 import styles from "./styles";
 
-const ParentCarePage = () => (
+const StudentsThinkPage = () => (
 	<div className={styles.authPage}>
 		<Head>
-			<title>Для учеников - Максим зайцев</title>
+			<title>Для учеников - Думай, решай, отгдаыва - Максим Зайцев</title>
 		</Head>
-		<Heading size={2}>Для учеников</Heading>
-		<Text className={styles.description}>
-			Полезные материалы и ссылки для учеников
-		</Text>
-		<div className={styles.list}>
-			<Attachment
-				type="pptx"
-				description="Презентация, которая поможет в непростом деле"
-				title="Подготовка к ГИА"
-				url={resolveAttachmentUrl(
-					"b69137d7413ddee4e9b2bcdb5dd88d171549446716571.pptx"
-				)}
-			/>
-		</div>
 		<div className="mt3">
-			<Heading size={4}>Думай, решай, отгадывай</Heading>
-			<Text>
-				Мои любители математики! Предлагаю вам расширить свои знания по
-				предмету. Решайте задачи, делитесь задачами со мной.
-			</Text>
 			<Text>
 				Это поможет вам совершенствовать и развивать важнейшие математические
 				умения, а также с ещё большей силой полюбить такую точную науку «
@@ -62,4 +40,10 @@ const ParentCarePage = () => (
 	</div>
 );
 
-export default ParentCarePage;
+StudentsThinkPage.hero = {
+	title: "Думай, решай, отгадывай",
+	description:
+		"Мои любители математики! Предлагаю вам расширить свои знания по предмету"
+};
+
+export default StudentsThinkPage;

@@ -23,7 +23,6 @@
 .item {
   display: inline-flex;
   flex-flow: row nowrap;
-  align-items: center;
   border-bottom: 1px solid transparent;
   &.clickable {
     color: fadeout(@deep-violet, 20%);
@@ -37,6 +36,25 @@
         color: @deep-violet;
       }
     }
+  }
+  .area {
+    .trigger {
+      display: flex;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+  }
+  .revealIcon {
+    opacity: 0.4;
+    margin-left: 1rem;
+  }
+  .sub {
+    padding: 0.5rem 0;
+    display: block;
+  }
+  .item {
+    font-size: 0.9rem;
+    opacity: 0.9;
   }
 }
 

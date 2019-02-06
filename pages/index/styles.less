@@ -27,7 +27,7 @@
 .advantages {
   .content {
     flex: 1 1 0;
-    font-size: 120%;
+    font-size: 110%;
   }
   .photo {
     flex: 1 1 0;
@@ -36,7 +36,16 @@
     img {
       border-radius: 1rem;
       border-bottom-right-radius: 2rem;
-      box-shadow: 0 0 0 6px fadeout(@chocolate, 90%);
+      box-shadow: 0 0 0 6px #f4ca8b;
+    }
+    .repair {
+      position: absolute;
+      z-index: 10;
+      left: -40px;
+      top: -44px;
+      img {
+        box-shadow: none;
+      }
     }
   }
 }
@@ -76,17 +85,6 @@
         bottom: -20px;
       }
     }
-  }
-}
-
-.placeholder {
-  background: #ffeff2;
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  &.n2 {
-    right: 0;
-    left: auto;
   }
 }
 

@@ -5,8 +5,11 @@ import Link from "next/link";
 import Home from "react-feather/dist/icons/home";
 import Bookopen from "react-feather/dist/icons/book-open";
 import UsersIcon from "react-feather/dist/icons/users";
+import PenIcon from "react-feather/dist/icons/edit";
+import FeathersIcon from "react-feather/dist/icons/feather";
 import LoginIcon from "react-feather/dist/icons/log-in";
 import Book from "react-feather/dist/icons/book";
+import BellIcon from "react-feather/dist/icons/bell";
 import { connect } from "react-redux";
 import { selectIsAuthed } from "@store/selectors/user";
 import UserIcon from "react-feather/dist/icons/user";
@@ -41,22 +44,47 @@ class Sidebar extends React.PureComponent {
 								Главная
 							</MenuItem>
 							<MenuItem
-								link="/parentcare"
+								link="/blog"
+								icon={<PenIcon className={styles.icon} size={18} />}
+							>
+								Мой блог
+							</MenuItem>
+							<MenuItem
+								sub={
+									<React.Fragment>
+										<MenuItem link="/parents/law">Законодательство</MenuItem>
+										<MenuItem link="/parents/health">Здоровье ребенка</MenuItem>
+										<MenuItem link="/parents/psychologyst">
+											Советы психологов
+										</MenuItem>
+									</React.Fragment>
+								}
 								icon={<Zap className={styles.icon} size={18} />}
 							>
 								Родителям
 							</MenuItem>
 							<MenuItem
-								link="/teacherscare"
 								icon={<Bookopen className={styles.icon} size={18} />}
+								sub={
+									<React.Fragment>
+										<MenuItem link="/teacher/health">Здоровье учителя</MenuItem>
+										<MenuItem link="/teacher/links">Полезные ссылки</MenuItem>
+										<MenuItem link="/teacher/class">Классные часы</MenuItem>
+									</React.Fragment>
+								}
 							>
-								<span className={styles.students}>
-									<span>Учителям</span>
-									<span className={styles.emoji}>🤗</span>
-								</span>
+								Учителям
 							</MenuItem>
 							<MenuItem
-								link="/studentscare"
+								sub={
+									<React.Fragment>
+										<MenuItem link="/students/gia">Подготовка к ГИА</MenuItem>
+										<MenuItem link="/students/think">Думай, решай</MenuItem>
+										<MenuItem link="/students/football">
+											Футбольная сеция
+										</MenuItem>
+									</React.Fragment>
+								}
 								icon={<UsersIcon className={styles.icon} size={18} />}
 							>
 								Ученикам
@@ -68,6 +96,12 @@ class Sidebar extends React.PureComponent {
 								Эл. дневник
 							</MenuItem>
 							<MenuItem
+								link="/lessons"
+								icon={<FeathersIcon className={styles.icon} size={18} />}
+							>
+								Планы уроков
+							</MenuItem>
+							<MenuItem
 								link="/work"
 								icon={<UserIcon className={styles.icon} size={18} />}
 							>
@@ -75,9 +109,9 @@ class Sidebar extends React.PureComponent {
 							</MenuItem>
 							<MenuItem
 								link="/teacherofyear"
-								icon={<UserIcon className={styles.icon} size={18} />}
+								icon={<BellIcon className={styles.icon} size={18} />}
 							>
-								Учитель года 2019 👨
+								Учитель года 2019
 							</MenuItem>
 						</Menu>
 					</div>

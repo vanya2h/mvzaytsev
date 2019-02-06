@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { debounce } from "throttle-debounce";
-import { EditorState, ContentState, convertToRaw } from "draft-js";
+import { EditorState, ContentState, convertToRaw } from "npm ";
 import { FETCH_FILE_UPLOAD } from "@consts/_fetch";
 import { Editor } from "react-draft-wysiwyg";
 import { FetcherContext } from "@providers";

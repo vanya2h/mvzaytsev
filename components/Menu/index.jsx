@@ -1,6 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import PropTypes from "prop-types";
+import ArrowIconDown from "react-feather/dist/icons/arrow-down";
+import ArrowIconRight from "react-feather/dist/icons/arrow-right";
 import cl from "classnames";
 import styles from "./styles";
 
@@ -27,21 +29,57 @@ Menu.propTypes = {
 };
 
 Menu.defaultProps = {
-	horizontal: false
+	horizontal: false,
+	sub: null
 };
 
 export default Menu;
 
 export class MenuItem extends React.Component {
+	state = {
+		open: false
+	};
+
+	handleOpen = open => {
+		this.setState({
+			open
+		});
+	};
+
+	handleClick = () => {
+		const { open } = this.state;
+		const { sub, onClick } = this.props;
+
+		if (onClick) {
+			onClick();
+			return;
+		}
+
+		if (sub) {
+			this.handleOpen(!open);
+		}
+	};
+
 	render = () => {
-		const { children, link, active, className, icon, ...rest } = this.props;
+		const {
+			children,
+			link,
+			active,
+			className,
+			icon,
+			sub,
+			...rest
+		} = this.props;
+
+		const { open } = this.state;
 
 		return (
 			<li
+				{...rest}
 				className={cl({ [styles.active]: active }, styles.item, className, {
 					[styles.clickable]: rest.onClick
 				})}
-				{...rest}
+				onClick={this.handleClick}
 			>
 				{icon && <span className={styles.icon}>{icon}</span>}
 				{link ? (
@@ -51,7 +89,18 @@ export class MenuItem extends React.Component {
 						</a>
 					</Link>
 				) : (
-					children
+					<span className={styles.area}>
+						<span className={styles.trigger}>
+							<span className={styles.children}>{children}</span>
+							{sub && (
+								<span className={styles.revealIcon}>
+									{open && <ArrowIconDown size={16} />}
+									{!open && <ArrowIconRight size={16} />}
+								</span>
+							)}
+						</span>
+						{sub && open && <span className={styles.sub}>{sub}</span>}
+					</span>
 				)}
 			</li>
 		);
@@ -59,7 +108,8 @@ export class MenuItem extends React.Component {
 }
 
 MenuItem.propTypes = {
-	icon: PropTypes.element
+	icon: PropTypes.element,
+	sub: PropTypes.any
 };
 
 MenuItem.defaultProps = {

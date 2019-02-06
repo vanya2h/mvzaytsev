@@ -22,3 +22,7 @@
 .spaced-list > *:last-child {
   margin-bottom: 0;
 }
+
+.italic {
+  font-style: italic;
+}

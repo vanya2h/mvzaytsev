@@ -59,7 +59,7 @@ class PostList extends React.PureComponent {
 						style={{
 							textAlign: "center"
 						}}
-						className="mt3"
+						className="mt2"
 					>
 						<Button loading={isHydrating} onClick={fetchPosts} primary>
 							Подгрузить ещё 10 постов

@@ -2,19 +2,22 @@ import React from "react";
 import Head from "next/head";
 import Heading from "@components/Heading";
 import Button from "@components/Button";
+import Alert from "@components/Alert";
 import Text from "@components/Text";
-import Attachment from "@components/Attachment";
 import styles from "./styles";
 
 const DiaryPage = () => (
 	<div className={styles.authPage}>
 		<Head>
-			<title>Электронный дневник - Максим зайцев</title>
+			<title>Электронный дневник - Максим Зайцев</title>
 		</Head>
-		<Heading size={2}>Электронный дневник</Heading>
-		<Text className={styles.description}>
-			На этой странице расположен вход в {"Электронный классный журнал"}
-		</Text>
+		<Alert info>
+			<Heading style={{ display: "inline" }} size={5}>
+				Внимание
+			</Heading>{" "}
+			Для работы с {"Электронным журналом"} необходимо пройти регистрацию
+			(пригласительный код можно взять у классного руководителя)
+		</Alert>
 		<div className="mt3">
 			<Heading size={4}>Вход в кабинет</Heading>
 
@@ -28,15 +31,16 @@ const DiaryPage = () => (
 				</ul>
 			</Text>
 
-			<a href="http://91.143.62.136:8082/">
+			<a href="https://netschool.eduportal44.ru/">
 				<Button primary>Войти в эл. дневник</Button>
 			</a>
-			<Text>
-				Для работы с {"Электронным журналом"} необходимо пройти регистрацию
-				(пригласительный код можно взять у классного руководителя)
-			</Text>
 		</div>
 	</div>
 );
+
+DiaryPage.hero = {
+	title: "Электронный дневник",
+	description: "Узнайте как пользоваться электронным дневником здесь"
+};
 
 export default DiaryPage;

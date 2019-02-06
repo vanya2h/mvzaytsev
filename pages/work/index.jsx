@@ -9,8 +9,6 @@ const WorkPage = () => (
 		<Head>
 			<title>Мое портфолио - Максим зайцев</title>
 		</Head>
-		<Heading size={2}>Моё портфолио</Heading>
-		<Text>Персональное портфолио преподавателя Максима Зайцева</Text>
 		<div className="flex">
 			<div
 				className="mr3"
@@ -401,5 +399,10 @@ const WorkPage = () => (
 		</div>
 	</div>
 );
+
+WorkPage.hero = {
+	title: "Портфолио",
+	description: "Персональное портфолио преподавателя Максима Зайцева"
+};
 
 export default WorkPage;
