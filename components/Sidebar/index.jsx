@@ -1,9 +1,13 @@
 import React from "react";
+import PropTypes from "prop-types";
 import cl from "classnames";
 import Link from "next/link";
 import Home from "react-feather/dist/icons/home";
 import Bookopen from "react-feather/dist/icons/book-open";
+import LoginIcon from "react-feather/dist/icons/log-in";
 import Book from "react-feather/dist/icons/book";
+import { connect } from "react-redux";
+import { selectIsAuthed } from "@store/selectors/user";
 import UserIcon from "react-feather/dist/icons/user";
 import ArrowRight from "react-feather/dist/icons/arrow-right";
 import Zap from "react-feather/dist/icons/zap";
@@ -14,6 +18,8 @@ import styles from "./styles";
 
 class Sidebar extends React.PureComponent {
 	render = () => {
+		const { isAuthed } = this.props;
+
 		return (
 			<div className={styles.wrapper}>
 				<div className={styles.top}>
@@ -65,6 +71,21 @@ class Sidebar extends React.PureComponent {
 				</div>
 				<div className={styles.bottom}>
 					<Menu>
+						{!isAuthed ? (
+							<MenuItem
+								link="/auth"
+								icon={<LoginIcon className={styles.icon} size={18} />}
+							>
+								Войти
+							</MenuItem>
+						) : (
+							<MenuItem
+								link="/admin"
+								icon={<LoginIcon className={styles.icon} size={18} />}
+							>
+								Админка
+							</MenuItem>
+						)}
 						<MenuItem icon={<ArrowRight className={styles.icon} size={18} />}>
 							<a
 								href="https://vk.com/id238880585"
@@ -81,4 +102,10 @@ class Sidebar extends React.PureComponent {
 	};
 }
 
-export default Sidebar;
+Sidebar.propTypes = {
+	isAuthed: PropTypes.bool.isRequired
+};
+
+export default connect(store => ({
+	isAuthed: selectIsAuthed(store)
+}))(Sidebar);

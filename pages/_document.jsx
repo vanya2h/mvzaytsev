@@ -32,6 +32,7 @@ class MyDocument extends Document {
 					<link rel="stylesheet" href="/static/utils.css" />
 					<link rel="stylesheet" href="/static/paddings.css" />
 					<link rel="stylesheet" href="/static/margins.css" />
+					<link rel="stylesheet" href="/static/forms.css" />
 					<link
 						href="https://fonts.googleapis.com/css?family=Lato:400,700|Ubuntu:400,700"
 						rel="stylesheet"

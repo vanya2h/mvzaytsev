@@ -15,6 +15,7 @@
           "@root": ["./"],
           "@static": ["./static"],
           "@providers": ["./providers"],
+          "@HOC": ["./HOC"],
           "@store": ["./store"]
         }
       }

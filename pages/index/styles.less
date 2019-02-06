@@ -27,11 +27,17 @@
 .advantages {
   .content {
     flex: 1 1 0;
+    font-size: 120%;
   }
   .photo {
     flex: 1 1 0;
     position: relative;
     min-height: 350px;
+    img {
+      border-radius: 1rem;
+      border-bottom-right-radius: 2rem;
+      box-shadow: 0 0 0 6px fadeout(@chocolate, 90%);
+    }
   }
 }
 
@@ -90,4 +96,8 @@
     margin-right: 20px;
     color: @emerald;
   }
+}
+
+.text {
+  font-size: 120%;
 }

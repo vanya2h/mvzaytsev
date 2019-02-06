@@ -1,42 +1,51 @@
 import { axios } from "@utils/axios";
 import * as actionTypes from "../consts/indexPage";
+import { collectionsInsert } from "./collections";
 
-export const indexPageFetchBlogsStart = () => ({
-	type: actionTypes.BLOGS_FETCH_START
+export const indexPageFetchPostsStart = () => ({
+	type: actionTypes.POSTS_FETCH_START
 });
 
-export const indexPageFetchBlogsSuccess = (blogs = []) => ({
-	type: actionTypes.BLOGS_FETCH_SUCCESS,
+export const indexPageFetchPostsSuccess = (posts = [], isOverflow) => ({
+	type: actionTypes.POSTS_FETCH_SUCCESS,
 	payload: {
-		blogs
+		posts,
+		isOverflow
 	}
 });
 
-export const indexPageFetchBlogsFail = () => ({
-	type: actionTypes.BLOGS_FETCH_FAIL
+export const indexPageFetchPostsFail = () => ({
+	type: actionTypes.POSTS_FETCH_FAIL
 });
 
 const shouldFetchPosts = state => {
-	return !state.indexPage.blogs.isHydrating && !state.indexPage.blogs.blogsIds;
+	return (
+		!state.indexPage.posts.isHydrating && !state.indexPage.posts.isOverflow
+	);
 };
 
-export const fetchBlogs = () => (dispatch, getState) => {
-	if (!shouldFetchPosts(getState())) {
+export const fetchPosts = () => (dispatch, getState) => {
+	const state = getState();
+	if (!shouldFetchPosts(state)) {
 		return;
 	}
-	console.log("move");
-	dispatch(indexPageFetchBlogsStart());
 
+	dispatch(indexPageFetchPostsStart());
 	return axios
-		.get("/blogs/entries", {
+		.get("/post/entries", {
 			params: {
 				limit: 10,
-				skip: 0
+				skip: state.indexPage.posts.postsIds
+					? state.indexPage.posts.postsIds.length
+					: 0
 			}
 		})
-		.then(({ data }) => dispatch(indexPageFetchBlogsSuccess(data)))
+		.then(({ data }) => {
+			dispatch(collectionsInsert("Post", data));
+			dispatch(indexPageFetchPostsSuccess(data, data.length < 10));
+		})
 		.catch(reason => {
 			console.warn("Произошла ошибка", reason);
-			dispatch(indexPageFetchBlogsFail());
+			dispatch(indexPageFetchPostsFail());
 		});
 };

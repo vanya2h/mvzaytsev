@@ -1,13 +1,16 @@
 import React from "react";
 import App, { Container } from "next/app";
 import cl from "classnames";
-import { Provider } from "react-redux";
 import { PageTransition } from "next-page-transitions";
 import Header from "@components/Header";
-import store from "@store";
+import Loader from "@components/Loader";
 import { compose } from "@utils/compose";
+import { createStoreEntity } from "@store";
+import { withAuth } from "@HOC/withAuth";
+import withRedux from "next-redux-wrapper";
 import Footer from "@components/Footer";
 import Sidebar from "@components/Sidebar";
+import { Provider } from "react-redux";
 import { withThemeProvider } from "@providers/theme";
 import { bindNProgress } from "@utils";
 import moment from "moment";
@@ -19,7 +22,6 @@ moment.locale("ru");
 class MyApp extends App {
 	static async getInitialProps({ Component, ctx }) {
 		let pageProps = {};
-
 		if (Component.getInitialProps) {
 			pageProps = await Component.getInitialProps(ctx);
 		}
@@ -30,7 +32,7 @@ class MyApp extends App {
 	}
 
 	render() {
-		const { Component, pageProps } = this.props;
+		const { Component, pageProps, store } = this.props;
 
 		return (
 			<Container>
@@ -49,9 +51,23 @@ class MyApp extends App {
 								</div>
 							</header>
 							{Component.before}
-							<div className={cl(styles.main, "grow-1")}>
+							<div
+								className={cl(styles.main, "grow-1", {
+									[styles.centered]: Component.centered
+								})}
+							>
 								<div className={cl(styles.container, "p2")}>
-									<PageTransition timeout={300} classNames="page-transition">
+									<PageTransition
+										timeout={300}
+										classNames="page-transition"
+										loadingComponent={<Loader />}
+										loadingDelay={500}
+										loadingTimeout={{
+											enter: 400,
+											exit: 0
+										}}
+										loadingClassNames="loading-indicator"
+									>
 										<Component {...pageProps} />
 									</PageTransition>
 								</div>
@@ -69,6 +85,10 @@ class MyApp extends App {
 	}
 }
 
-const enhance = compose(withThemeProvider);
+const enhance = compose(
+	withRedux(createStoreEntity),
+	withAuth,
+	withThemeProvider
+);
 
 export default enhance(MyApp);

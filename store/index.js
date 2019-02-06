@@ -3,7 +3,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunkMiddleware from "redux-thunk";
 import { rootReducer } from "./reducers";
 
-const createStoreEntity = (initialState = {}) => {
+export const createStoreEntity = (initialState = {}) => {
 	return createStore(
 		rootReducer,
 		initialState,

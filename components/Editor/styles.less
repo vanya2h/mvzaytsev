@@ -1,0 +1,74 @@
+@import "~@theme/colors";
+@import "~@theme/common";
+
+.editor {
+  .toolbar {
+    padding: 0;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 61px;
+    padding-top: 20px;
+    background: @white !important;
+    z-index: 100;
+    border: 0;
+  }
+
+  figure {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  :global(.rdw-image-imagewrapper) {
+    max-width: 100%;
+    img {
+      max-width: 100%;
+    }
+  }
+  :global(.DraftEditor-editorContainer),
+  :global(.public-DraftEditorPlaceholder-inner) {
+    font-size: @font-size;
+  }
+
+  :global(.rdw-option-wrapper),
+  :global(.rdw-dropdown-wrapper) {
+    background: #e2e2e2 !important;
+    border: 0 !important;
+    border-radius: 4px !important;
+    position: relative !important;
+    margin-right: 6px !important;
+    margin-left: 0 !important;
+    padding: 10px !important;
+    transition: 0.2s all ease-in-out;
+    height: auto !important;
+    &:hover {
+      box-shadow: none !important;
+      background: darken(#e2e2e2, 10%) !important;
+    }
+  }
+
+  :global(.rdw-dropdown-selectedtext) {
+    color: fadeout(@black, 30%);
+    line-height: 17px !important;
+  }
+
+  :global(.rdw-dropdown-optionwrapper) {
+    max-width: 200px;
+    position: absolute;
+    z-index: 1000 !important;
+    left: 0 !important;
+    top: 100% !important;
+    margin-top: 9px !important;
+    border-radius: 6px !important;
+    padding: 10px !important;
+    border: 0 !important;
+    background: #eee !important;
+    &:hover {
+      background: #eee !important;
+    }
+  }
+  :global(.rdw-dropdownoption-default) {
+    text-align: left;
+    justify-content: flex-start;
+    padding: 5px !important;
+  }
+}

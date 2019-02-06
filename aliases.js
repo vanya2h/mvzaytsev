@@ -8,5 +8,6 @@ module.exports = {
 	"@utils": path.resolve("utils"),
 	"@providers": path.resolve("providers"),
 	"@pages": path.resolve("pages"),
-	"@store": path.resolve("store")
+	"@store": path.resolve("store"),
+	"@HOC": path.resolve("HOC")
 };

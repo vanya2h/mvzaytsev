@@ -2,42 +2,44 @@ import { resolveEntityId } from "@utils/resolveEntityId";
 import * as actionTypes from "../consts/indexPage";
 
 const initialState = {
-	blogs: {
-		blogsIds: null,
-		blogs: null,
+	posts: {
+		postsIds: null,
 		isHydrating: false,
+		isOverflow: false,
 		hasError: false
 	}
 };
 
 export const indexPage = (state = initialState, action) => {
 	switch (action.type) {
-	case actionTypes.BLOGS_FETCH_START:
+	case actionTypes.POSTS_FETCH_START:
 		return {
 			...state,
-			blogs: {
-				...state.blogs,
+			posts: {
+				...state.posts,
 				isHydrating: true,
 				hasError: false,
-				blogs: null,
-				blogsIds: null
+				isOverflow: false
 			}
 		};
-	case actionTypes.BLOGS_FETCH_SUCCESS:
+	case actionTypes.POSTS_FETCH_SUCCESS:
 		return {
 			...state,
-			blogs: {
-				...state.blogs,
+			posts: {
+				...state.posts,
 				isHydrating: false,
-				blogs: action.payload.blogs,
-				blogsIds: action.payload.blogs.map(resolveEntityId)
+				postsIds: [
+					...(state.posts.postsIds || []),
+					...action.payload.posts.map(resolveEntityId)
+				],
+				isOverflow: action.payload.isOverflow
 			}
 		};
-	case actionTypes.BLOGS_FETCH_FAIL:
+	case actionTypes.POSTS_FETCH_FAIL:
 		return {
 			...state,
-			blogs: {
-				...state.blogs,
+			posts: {
+				...state.posts,
 				isHydrating: false,
 				hasError: true
 			}

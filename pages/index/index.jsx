@@ -3,11 +3,9 @@ import Link from "next/link";
 import cl from "classnames";
 import Heading from "@components/Heading";
 import Text from "@components/Text";
-import BlogList from "./components/BlogList";
+import PostList from "./components/PostList";
 import Button from "@components/Button";
 import ArrowRight from "react-feather/dist/icons/arrow-right";
-import Pen from "react-feather/dist/icons/edit-2";
-import Message from "react-feather/dist/icons/message-circle";
 import styles from "./styles";
 
 const IndexPage = () => (
@@ -24,11 +22,11 @@ const IndexPage = () => (
 					)}
 				>
 					<div className={styles.photo}>
-						<div className={styles.placeholder} />
+						<img src={require("./img/a1.jpg")} width="100%" />
 					</div>
 					<div className={styles.content}>
 						<Heading size={3} className={styles.head}>
-							Я люблю свою работу
+							Я люблю свою работу 👨‍🎓
 						</Heading>
 						<Text>
 							Я – человек активной жизненной позиции. Мне интересно всё: работа,
@@ -57,7 +55,7 @@ const IndexPage = () => (
 				>
 					<div className={styles.content}>
 						<Heading size={3} className={styles.head}>
-							Я люблю свой класс
+							Я люблю свой класс 🙌
 						</Heading>
 						<Text>
 							Текст-заглушка. Lorem ipsum dolor sit amet consectetur adipisicing
@@ -73,7 +71,7 @@ const IndexPage = () => (
 						</div>
 					</div>
 					<div className={styles.photo}>
-						<div className={cl(styles.placeholder, styles.n2)} />
+						<img src={require("./img/a3.png")} width="100%" />
 					</div>
 				</div>
 				<div
@@ -86,7 +84,7 @@ const IndexPage = () => (
 					)}
 				>
 					<div className={styles.photo}>
-						<div className={styles.placeholder} />
+						<img src={require("./img/a2.png")} width="100%" />
 					</div>
 					<div className={styles.content}>
 						<div className={cl(styles.decor, styles.n5)}>
@@ -96,7 +94,7 @@ const IndexPage = () => (
 							<img src={require("./img/football.png")} width="100%" />
 						</div>
 						<Heading size={3} className={styles.head}>
-							Я много занимаюсь спортом
+							Спорт - неотъемлемая часть 😤
 						</Heading>
 						<Text>
 							Текст-заглушка. Lorem ipsum dolor sit amet consectetur adipisicing
@@ -110,14 +108,19 @@ const IndexPage = () => (
 		</div>
 		<div className="mt4 mb4">
 			<div className={styles.title}>
-				<Heading size={1} as="h3">
-					<span className={styles.icon}>
-						<Pen size={30} />
-					</span>
-					Мой блог
+				<Heading size={3} as="h3">
+					Последние записи из блога 🙄
 				</Heading>
-				<div className="mt2">
-					<BlogList />
+				<Text
+					className="m0"
+					style={{
+						fontSize: "110%"
+					}}
+				>
+					Мои персональные записи, которые могут быть вам интересны
+				</Text>
+				<div className="mt4">
+					<PostList />
 				</div>
 			</div>
 		</div>
@@ -162,12 +165,10 @@ const Head = () => (
 				<div className="mt2">
 					<Link href="/work">
 						<a>
-							<Button primary icon={<ArrowRight size={15} />}>
-								Портфолио
-							</Button>
+							<Button icon={<ArrowRight size={15} />}>Портфолио</Button>
 						</a>
 					</Link>
-					<Button icon={<Message size={15} />}>Написать мне</Button>
+					{/* <Button icon={<Message size={15} />}>Написать мне</Button> */}
 				</div>
 			</div>
 		</div>

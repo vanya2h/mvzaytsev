@@ -7,6 +7,7 @@
 html {
   font-size: @font-size;
   color: @chocolate;
+  background: #fff5f7;
   &:global(.normal) {
     font-size: @font-size;
   }
@@ -37,7 +38,7 @@ body {
   min-width: 100vw;
   min-height: 100vh;
   line-height: @line-height;
-  background: white;
+  background: #fff5f7;
 }
 
 a {
@@ -51,6 +52,11 @@ a {
 
 .main {
   flex-grow: 1;
+  &.centered {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
 }
 .sidebar {
   width: 220px;
@@ -78,17 +84,28 @@ a {
   max-width: 970px;
 }
 
-.page-transition-enter {
+:global(.page-transition-enter) {
   opacity: 0;
+  transform: translate3d(0, 20px, 0);
 }
-.page-transition-enter-active {
+:global(.page-transition-enter-active) {
   opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 300ms, transform 300ms;
+}
+:global(.page-transition-exit) {
+  opacity: 1;
+}
+:global(.page-transition-exit-active) {
+  opacity: 0;
   transition: opacity 300ms;
 }
-.page-transition-exit {
-  opacity: 1;
-}
-.page-transition-exit-active {
+:global(.loading-indicator-appear),
+:global(.loading-indicator-enter) {
   opacity: 0;
-  transition: opacity 300ms;
+}
+:global(.loading-indicator-appear-active),
+:global(.loading-indicator-enter-active) {
+  opacity: 1;
+  transition: opacity 400ms;
 }
