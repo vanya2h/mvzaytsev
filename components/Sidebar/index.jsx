@@ -11,7 +11,8 @@ import LoginIcon from "react-feather/dist/icons/log-in";
 import Book from "react-feather/dist/icons/book";
 import BellIcon from "react-feather/dist/icons/bell";
 import { connect } from "react-redux";
-import { selectIsAuthed } from "@store/selectors/user";
+import { userLogout } from "@store/actions/user";
+import * as userSelectors from "@store/selectors/user";
 import UserIcon from "react-feather/dist/icons/user";
 import ArrowRight from "react-feather/dist/icons/arrow-right";
 import Zap from "react-feather/dist/icons/zap";
@@ -22,7 +23,7 @@ import styles from "./styles";
 
 class Sidebar extends React.PureComponent {
 	render = () => {
-		const { isAuthed } = this.props;
+		const { isAuthed, isAdmin, logout } = this.props;
 
 		return (
 			<div className={styles.wrapper}>
@@ -125,22 +126,27 @@ class Sidebar extends React.PureComponent {
 							>
 								Войти
 							</MenuItem>
-						) : (
+						) : isAdmin ? (
 							<MenuItem
 								link="/admin"
 								icon={<LoginIcon className={styles.icon} size={18} />}
 							>
 								Админка
 							</MenuItem>
-						)}
-						<MenuItem icon={<ArrowRight className={styles.icon} size={18} />}>
-							<a
-								href="https://vk.com/id238880585"
-								target="_blank"
-								rel="noopener noreferrer"
+						) : (
+							<MenuItem
+								onClick={logout}
+								clickable
+								icon={<LoginIcon className={styles.icon} size={18} />}
 							>
-								Я в vk.com
-							</a>
+								Выйти
+							</MenuItem>
+						)}
+						<MenuItem
+							href="https://vk.com/id238880585"
+							icon={<ArrowRight className={styles.icon} size={18} />}
+						>
+							Я в vk.com
 						</MenuItem>
 					</Menu>
 				</div>
@@ -150,9 +156,19 @@ class Sidebar extends React.PureComponent {
 }
 
 Sidebar.propTypes = {
-	isAuthed: PropTypes.bool.isRequired
+	isAuthed: PropTypes.bool.isRequired,
+	isAdmin: PropTypes.bool.isRequired,
+	logout: PropTypes.bool.isRequired
 };
 
-export default connect(store => ({
-	isAuthed: selectIsAuthed(store)
-}))(Sidebar);
+export default connect(
+	store => ({
+		isAuthed: userSelectors.selectIsAuthed(store),
+		isAdmin: userSelectors.selectUserField(store, {
+			field: "isAdmin"
+		})
+	}),
+	dispatch => ({
+		logout: () => dispatch(userLogout())
+	})
+)(Sidebar);

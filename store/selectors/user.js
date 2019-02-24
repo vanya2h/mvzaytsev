@@ -1,12 +1,39 @@
 import { createSelector } from "reselect";
+import { selectEntity } from "@store/selectors/collections";
+
+export const selectUserId = createSelector(
+	store => store.user.user,
+	userId => userId
+);
 
 export const selectIsAuthed = createSelector(
-	store => store.user,
-	user => !!user.userId
+	selectUserId,
+	userId => !!userId
+);
+
+const selectUser = createSelector(
+	store =>
+		selectEntity(store, {
+			id: store.user.user,
+			model: "User"
+		}),
+	user => user
 );
 
 export const selectUserField = createSelector(
-	store => store.user,
+	selectUser,
 	(_, { field }) => field,
-	(user, field) => user.user && user.user[field]
+	(user, field) => {
+		return user && user[field];
+	}
+);
+
+export const selectIsVerified = createSelector(
+	selectUser,
+	user => user && user.emailConfirmed
+);
+
+export const selectIsAdmin = createSelector(
+	selectUser,
+	user => user && user.isAdmin
 );

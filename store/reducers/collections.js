@@ -29,9 +29,9 @@ export const collections = (state = initialState, action) => {
 			...state,
 			[action.payload.model]: {
 				...(state[action.payload.model] || {}),
-				[action.payload.entryId]: {
-					...state[action.payload.model][action.payload.entityId],
-					...state[action.payload.data]
+				[action.payload.entityId]: {
+					...(state[action.payload.model][action.payload.entityId] || {}),
+					...action.payload.data
 				}
 			}
 		};

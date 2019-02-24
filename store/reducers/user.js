@@ -10,16 +10,15 @@ export const user = (state = initialState, action) => {
 	case actionTypes.USER_AUTH:
 		return {
 			...state,
-			user: action.payload.user,
-			userId: resolveEntityId(action.payload.user)
+			user: resolveEntityId(action.payload.user)
 		};
 
 	case actionTypes.USER_LOGOUT:
 		return {
 			...state,
-			user: null,
-			userId: null
+			user: null
 		};
+
 	default:
 		return state;
 	}

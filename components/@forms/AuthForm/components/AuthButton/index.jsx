@@ -8,7 +8,7 @@ class AuthButton extends React.PureComponent {
 	render = () => {
 		const { makeAuth, isHydrating } = this.props;
 		return (
-			<Button primary loading={isHydrating} onClick={makeAuth}>
+			<Button type="submit" primary loading={isHydrating} onClick={makeAuth}>
 				Поехали!
 			</Button>
 		);

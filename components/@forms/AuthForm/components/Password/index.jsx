@@ -1,28 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Input from "@components/Input";
-import { compose } from "@utils/compose";
 import Text from "@components/Text";
+import { compose } from "@utils/compose";
 import { withAuthFormContext } from "../../context";
 import styles from "./styles";
 
-class Login extends React.PureComponent {
+class Password extends React.PureComponent {
 	render = () => {
 		const { value, onChange, typeError } = this.props;
+
 		return (
 			<React.Fragment>
-				<Text bold as="label" htmlFor="login">
-					Логин
-				</Text>
-				<div className="mt1">
-					<Input
-						onChange={onChange}
-						value={value}
-						name="login"
-						placeholder="Сюда вводите логин"
-						fluid
-					/>
-				</div>
+				<Input
+					type="password"
+					onChange={onChange}
+					value={value}
+					name="password"
+					placeholder="А сюда свой пароль"
+					fluid
+				/>
 				{typeError && (
 					<div className="mt1">
 						<Text className={styles.error}>{typeError}</Text>
@@ -33,26 +30,29 @@ class Login extends React.PureComponent {
 	};
 }
 
-Login.propTypes = {
+Password.propTypes = {
 	value: PropTypes.string,
 	onChange: PropTypes.func.isRequired,
-	typeError: PropTypes.string
+	typeError: PropTypes.func.isRequired
 };
 
-Login.defaultProps = {
-	value: null,
-	typeError: null
+Password.defaultProps = {
+	value: null
 };
 
 const enhance = compose(
 	withAuthFormContext(context => ({
-		value: context.credentials.login,
-		typeError: context.selectTypeError("login"),
+		value: context.selectors.selectTemporaryField(context, {
+			field: "password"
+		}),
+		typeError: context.selectors.selectTypeErrorMessage(context, {
+			field: "password"
+		}),
 		onChange: value =>
 			context.handleCredentials({
-				login: value
+				password: value
 			})
 	}))
 );
 
-export default enhance(Login);
+export default enhance(Password);

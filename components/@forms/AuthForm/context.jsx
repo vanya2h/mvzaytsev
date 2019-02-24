@@ -1,66 +1,72 @@
 import React from "react";
 import PropTypes from "prop-types";
+import cookies from "js-cookie";
 import { connect } from "react-redux";
 import { withAsyncSetState } from "@HOC/utils/withAsyncSetState";
 import { userAuth } from "@store/actions/user";
-import { axios } from "@utils/axios";
+import { collectionsInsert } from "@store/actions/collections";
 import { parseFormError } from "@utils/parseFormError";
-import cookies from "js-cookie";
 import { compose } from "@utils/compose";
+import { createAuthFunction } from "./creators";
+import * as selectors from "./selectors";
 
 export const authFormContext = React.createContext();
 
 class AuthFormProviderClass extends React.PureComponent {
-	state = {
-		credentials: {},
-		error: null,
-		isHydrating: false,
-		typeErrors: false
-	};
+	constructor(props) {
+		super(props);
+
+		this.auth = createAuthFunction();
+
+		this.state = {
+			temporaryData: {},
+			error: null,
+			isHydrating: false,
+			typeErrors: false
+		};
+
+		this.selectors = selectors;
+	}
 
 	handleCredentials = data => {
 		return this.asyncSetState(state => ({
-			credentials: {
-				...state.credentials,
+			temporaryData: {
+				...state.temporaryData,
 				...data
 			}
 		}));
 	};
 
-	selectTypeError = field => {
-		const { typeErrors } = this.state;
+	makeAuth = async () => {
+		const { userAuth, insertUserInCollections } = this.props;
+		const { temporaryData } = this.state;
 
-		return typeErrors && typeErrors[field] && typeErrors[field].msg;
-	};
-
-	makeAuth = () => {
-		const { userAuth } = this.props;
-		const { credentials } = this.state;
-
-		return this.asyncSetState({
-			isHydrating: true,
-			error: null
-		})
-			.then(() => axios.post("/user/signin", credentials))
-			.then(({ data }) => {
-				cookies.set("x-access-token", data.token);
-				return userAuth(data.user, data.token);
-			})
-			.then(() =>
-				this.asyncSetState({
-					isHydrating: false
-				})
-			)
-			.catch(reason => {
-				console.log(reason);
-				const [error, typeErrors] = parseFormError(reason);
-
-				return this.asyncSetState({
-					isHydrating: false,
-					error,
-					typeErrors
-				});
+		try {
+			await this.asyncSetState({
+				isHydrating: true,
+				error: null
 			});
+
+			const response = await this.auth(temporaryData);
+
+			await cookies.set("x-access-token", response.data.token);
+			await insertUserInCollections(response.data.user);
+			await userAuth(response.data.user, response.data.token);
+
+			await this.asyncSetState({
+				isHydrating: false
+			});
+		} catch (reason) {
+			const [error, typeErrors] = parseFormError(reason);
+
+			await this.asyncSetState({
+				isHydrating: false,
+				error,
+				typeErrors
+			});
+
+			return Promise.reject(reason);
+		}
 	};
 
 	render = () => {
@@ -70,7 +76,7 @@ class AuthFormProviderClass extends React.PureComponent {
 					...this.state,
 					handleCredentials: this.handleCredentials,
 					makeAuth: this.makeAuth,
-					selectTypeError: this.selectTypeError
+					selectors: this.selectors
 				}}
 			>
 				{this.props.children}
@@ -81,11 +87,13 @@ class AuthFormProviderClass extends React.PureComponent {
 
 AuthFormProviderClass.propTypes = {
 	children: PropTypes.element.isRequired,
-	userAuth: PropTypes.func.isRequired
+	userAuth: PropTypes.func.isRequired,
+	insertUserInCollections: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = dispatch => ({
-	userAuth: (user, token) => dispatch(userAuth(user, token))
+	userAuth: (user, token) => dispatch(userAuth(user, token)),
+	insertUserInCollections: user => dispatch(collectionsInsert("User", [user]))
 });
 
 const enhance = compose(

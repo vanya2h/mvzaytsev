@@ -4,18 +4,18 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  margin-bottom: -0.6rem;
+  margin-bottom: -0.8rem;
   & > * {
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.8rem;
   }
 
   &.horizontal {
     flex-direction: row;
-    margin-bottom: -0.6rem;
+    margin-bottom: -0.8rem;
     align-items: center;
     & > * {
       margin-right: 1rem;
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.8rem;
     }
   }
 }
@@ -23,13 +23,9 @@
 .item {
   display: inline-flex;
   flex-flow: row nowrap;
-  border-bottom: 1px solid transparent;
   &.clickable {
     color: fadeout(@deep-violet, 20%);
     cursor: pointer;
-    &.active {
-      border-bottom: 1px solid fadeout(@deep-violet, 60%);
-    }
     &:hover {
       color: @deep-violet;
       .icon {

@@ -13,6 +13,7 @@
           "@utils": ["./utils"],
           "@theme": ["./theme"],
           "@root": ["./"],
+          "@consts": ["./consts"],
           "@static": ["./static"],
           "@providers": ["./providers"],
           "@HOC": ["./HOC"],

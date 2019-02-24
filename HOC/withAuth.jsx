@@ -1,6 +1,7 @@
 import React from "react";
 import { getDisplayName } from "@utils/getDisplayName";
 import { axios } from "@utils/axios";
+import { collectionsInsert } from "@store/actions/collections";
 import { to } from "@utils/to";
 import { userAuth } from "@store/actions/user";
 import { retriveToken } from "@utils/retriveToken";
@@ -21,6 +22,10 @@ export const withAuth = Page => {
 			);
 			if (!error) {
 				await context.ctx.store.dispatch(userAuth(response.data));
+
+				await context.ctx.store.dispatch(
+					collectionsInsert("User", [response.data])
+				);
 			}
 		}
 		return {

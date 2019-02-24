@@ -1,31 +1,33 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
 import Text from "@components/Text";
+import { compose } from "@utils/compose";
 import Alert from "@components/Alert";
-import Login from "./components/Login";
-import Hello from "./components/Hello";
+import Email from "./components/Email";
 import Password from "./components/Password";
 import AuthButton from "./components/AuthButton";
-import { compose } from "@utils/compose";
-import { withAuthFormProvider, withAuthFormContext } from "./context";
-import { selectIsAuthed } from "@store/selectors/user";
+import RegisterButton from "./components/RegisterButton";
+import * as context from "./context";
+import styles from "./styles";
 
 class AuthForm extends React.PureComponent {
-	render = () => {
-		const { isAuthed, errorMessage } = this.props;
+	submit = event => {
+		const { submit } = this.props;
+		event.preventDefault();
 
-		if (isAuthed) {
-			return <Hello />;
-		}
+		submit();
+	};
+
+	render = () => {
+		const { errorMessage } = this.props;
 
 		return (
-			<React.Fragment>
+			<form onSubmit={this.submit}>
 				<Text className="m0">
 					Просто введите логин и пароль, чтобы получить доступ к админке
 				</Text>
 				<div className="mt2">
-					<Login />
+					<Email />
 				</div>
 				<div className="mt2">
 					<Password />
@@ -38,27 +40,26 @@ class AuthForm extends React.PureComponent {
 					</div>
 				)}
 				<div className="mt2">
-					<AuthButton />
+					<div className={styles.buttons}>
+						<AuthButton />
+						<RegisterButton />
+					</div>
 				</div>
-			</React.Fragment>
+			</form>
 		);
 	};
 }
 
 AuthForm.propTypes = {
-	isAuthed: PropTypes.bool.isRequired,
-	errorMessage: PropTypes.string
+	errorMessage: PropTypes.string,
+	submit: PropTypes.func.isRequired
 };
 
-const mapStoreToProps = store => ({
-	isAuthed: selectIsAuthed(store)
-});
-
 const enhance = compose(
-	connect(mapStoreToProps),
-	withAuthFormProvider,
-	withAuthFormContext(context => ({
-		errorMessage: context.error && context.error.message
+	context.withAuthFormProvider,
+	context.withAuthFormContext(context => ({
+		errorMessage: context.selectors.selectErrorMessage(context),
+		submit: context.makeAuth
 	}))
 );
 

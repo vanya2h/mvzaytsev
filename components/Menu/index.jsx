@@ -91,7 +91,9 @@ export class MenuItem extends React.Component {
 				) : (
 					<span className={styles.area}>
 						<span className={styles.trigger}>
-							<span className={styles.children}>{children}</span>
+							<a>
+								<span className={styles.children}>{children}</span>
+							</a>
 							{sub && (
 								<span className={styles.revealIcon}>
 									{open && <ArrowIconDown size={16} />}

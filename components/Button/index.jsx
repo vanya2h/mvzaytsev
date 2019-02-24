@@ -5,15 +5,25 @@ import styles from "./styles";
 
 class Button extends React.PureComponent {
 	render = () => {
-		const { className, loading, primary, icon, children, ...rest } = this.props;
+		const {
+			className,
+			disabled,
+			loading,
+			primary,
+			icon,
+			children,
+			...rest
+		} = this.props;
 
 		return (
 			<button
+				disabled={disabled || loading}
 				className={cl(
 					styles.button,
 					className,
 					{ [styles.loading]: loading },
-					{ [styles.primary]: primary }
+					{ [styles.primary]: primary },
+					{ [styles.disabled]: disabled }
 				)}
 				{...rest}
 			>
@@ -28,13 +38,15 @@ Button.propTypes = {
 	className: PropTypes.string,
 	loading: PropTypes.bool,
 	children: PropTypes.any,
-	primary: PropTypes.bool
+	primary: PropTypes.bool,
+	disabled: PropTypes.bool
 };
 
 Button.defaultProps = {
 	className: null,
 	primary: false,
-	loading: null
+	disabled: false,
+	loading: false
 };
 
 export default Button;
