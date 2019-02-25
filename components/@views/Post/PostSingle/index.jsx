@@ -1,11 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
+import Heart from "react-feather/dist/icons/heart";
+import Button from "@components/Button";
 import UserIcon from "react-feather/dist/icons/user";
 import TimeIcon from "react-feather/dist/icons/clock";
 import AttachmentResolver from "@components/@resolvers/Attachment";
 import TextRenderer from "@components/TextRenderer";
-// import Text from "@components/Text";
+import { resolveEntityId } from "@utils/resolveEntityId";
+import LikePost from "@components/@actions/LikePost";
 import { Menu, MenuItem } from "@components/Menu";
 import Heading from "@components/Heading";
 import Image from "@components/Image";
@@ -48,6 +51,21 @@ class PostSingle extends React.PureComponent {
 					</div>
 					<div className="mt3">
 						<TextRenderer content={post.content} />
+					</div>
+					<div className="mt2">
+						<LikePost postId={resolveEntityId(post)}>
+							{({ toggle, isLiked, isHydrating, error, likesCount }) => (
+								<Button
+									primary={isLiked}
+									onClick={toggle}
+									disabled={!!error}
+									icon={<Heart size={15} />}
+									loading={isHydrating}
+								>
+									{likesCount} Мне нравится
+								</Button>
+							)}
+						</LikePost>
 					</div>
 				</div>
 			</div>

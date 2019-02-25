@@ -1,6 +1,7 @@
 import colors from "colors";
 import express from "express";
 import next from "next";
+import { axios } from "@utils/axios";
 import cookieParser from "cookie-parser";
 import { config } from "../utils";
 
@@ -18,9 +19,14 @@ export default dirname =>
 		server.use(cookieParser());
 		server.use("/static", express.static(dirname + "/.next/static"));
 
-		server.get("/blog/:id", (req, res) =>
-			app.render(req, res, "/blog", { postId: req.params.id })
-		);
+		server.get("/blog/:id", async (req, res) => {
+			if (req.params.id) {
+				return app.render(req, res, "/blog", { postId: req.params.id });
+			}
+
+			const response = await axios.get("/post/latest");
+			return app.render(req, res, "/blog", { postId: response.data });
+		});
 
 		server.get("*", (req, res) => handle(req, res));
 

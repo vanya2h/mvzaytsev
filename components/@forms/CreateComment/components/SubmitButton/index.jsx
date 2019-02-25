@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Button from "@components/Button";
+import SendIcon from "react-feather/dist/icons/send";
 import { compose } from "@utils/compose";
 import { withCreateCommentFormContext } from "../../context";
 
@@ -8,7 +9,11 @@ class SubmitButton extends React.PureComponent {
 	render = () => {
 		const { createComment, isHydrating } = this.props;
 		return (
-			<Button primary loading={isHydrating} onClick={createComment}>
+			<Button
+				icon={<SendIcon size={15} />}
+				loading={isHydrating}
+				onClick={createComment}
+			>
 				Отправить комментарий
 			</Button>
 		);

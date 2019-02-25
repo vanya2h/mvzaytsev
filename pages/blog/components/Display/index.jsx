@@ -17,11 +17,17 @@ class Display extends React.Component {
 		return (
 			<div className={styles.layout}>
 				<div className={styles.main}>
-					<PostResolver key={postId} skeleton={<PostSkeleton />} post={postId}>
-						{post => <PostSingle key={postId} post={post} />}
-					</PostResolver>
+					{postId && (
+						<PostResolver
+							key={postId}
+							skeleton={<PostSkeleton />}
+							post={postId}
+						>
+							{post => <PostSingle key={postId} post={post} />}
+						</PostResolver>
+					)}
 					<div className="mt3">
-						<CommentList key={postId} postId={postId} />
+						{postId && <CommentList key={postId} postId={postId} />}
 					</div>
 				</div>
 				<div className={styles.aside}>

@@ -13,6 +13,14 @@ import { createLoadMoreFunction } from "./creators";
 import PostSkeleton from "./components/PostSkeleton";
 
 class PostList extends React.Component {
+	componentDidMount = () => {
+		const { postIds, router } = this.props;
+
+		if (!router.query.postId && !!postIds) {
+			router.push(`/blog/${postIds[0]}`);
+		}
+	};
+
 	componentDidUpdate = prevProps => {
 		const { postIds, router } = this.props;
 
