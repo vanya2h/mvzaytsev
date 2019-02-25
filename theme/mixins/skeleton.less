@@ -1,0 +1,73 @@
+@skeletonInitialColor: fadeout(black, 94%);
+@skeletonEndColor: fadeout(black, 97%);
+@skeletonBorderRadius: 3px;
+@skeletonAnimationTime: 2s;
+@skeletonAnimationName: pulse;
+@skeletonAnimationDuration: infinite;
+@skeletonAnimation: @skeletonAnimationName @skeletonAnimationTime
+  @skeletonAnimationDuration;
+
+.skeleton-block(@width, @height, @background:  @skeletonInitialColor ) {
+  background: @background;
+  border-radius: @skeletonBorderRadius;
+  width: @width;
+  height: @height;
+}
+
+.skeleton-avatar(@width) {
+  .skeleton-block(@width, @width);
+  border-radius: 100% !important;
+}
+
+.skeleton-animated-block(@width, @height) {
+  .skeleton-block(@width, @height);
+  animation: @skeletonAnimation;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    background: @skeletonInitialColor;
+  }
+  70% {
+    background: @skeletonEndColor;
+  }
+  100% {
+    background: @skeletonInitialColor;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    background: @skeletonInitialColor;
+  }
+  70% {
+    background: @skeletonEndColor;
+  }
+  100% {
+    background: @skeletonInitialColor;
+  }
+}
+
+@-moz-keyframes pulse {
+  0% {
+    background: @skeletonInitialColor;
+  }
+  70% {
+    background: @skeletonEndColor;
+  }
+  100% {
+    background: @skeletonInitialColor;
+  }
+}
+
+@-o-keyframes pulse {
+  0% {
+    background: @skeletonInitialColor;
+  }
+  70% {
+    background: @skeletonEndColor;
+  }
+  100% {
+    background: @skeletonInitialColor;
+  }
+}

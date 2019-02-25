@@ -24,7 +24,7 @@ class AuthForm extends React.PureComponent {
 		return (
 			<form onSubmit={this.submit}>
 				<Text className="m0">
-					Просто введите логин и пароль, чтобы получить доступ к админке
+					Просто введите логин и пароль, чтобы войти в свой аккаунт.
 				</Text>
 				<div className="mt2">
 					<Email />

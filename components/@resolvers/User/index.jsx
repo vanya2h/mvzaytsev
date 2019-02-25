@@ -30,11 +30,12 @@ const mapEntityContext = user => ({
 const mapPropsToOptions = props => ({
 	entity: props.user,
 	model: MODEL_USER,
-	loadEntity: axios.get("/user/entry", {
-		params: {
-			userId: resolveEntityId(props.user)
-		}
-	})
+	loadEntity: () =>
+		axios.get("/user/entry", {
+			params: {
+				userId: resolveEntityId(props.user)
+			}
+		})
 });
 
 const enhance = compose(withEntity(mapPropsToOptions)(mapEntityContext));

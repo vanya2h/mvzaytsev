@@ -1,8 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import PropTypes from "prop-types";
-import ArrowIconDown from "react-feather/dist/icons/arrow-down";
-import ArrowIconRight from "react-feather/dist/icons/arrow-right";
 import cl from "classnames";
 import styles from "./styles";
 
@@ -94,12 +92,6 @@ export class MenuItem extends React.Component {
 							<a>
 								<span className={styles.children}>{children}</span>
 							</a>
-							{sub && (
-								<span className={styles.revealIcon}>
-									{open && <ArrowIconDown size={16} />}
-									{!open && <ArrowIconRight size={16} />}
-								</span>
-							)}
 						</span>
 						{sub && open && <span className={styles.sub}>{sub}</span>}
 					</span>

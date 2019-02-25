@@ -1,22 +1,34 @@
 import React from "react";
 import Head from "next/head";
-import PostList from "./components/PostList";
+import PropTypes from "prop-types";
+import Display from "./components/Display";
 import styles from "./styles";
 
-const BlogPage = () => (
-	<div className={styles.authPage}>
-		<Head>
-			<title>Мой персональный блог - Максим Зайцев</title>
-		</Head>
-		<div className="mt3">
-			<PostList />
-		</div>
-	</div>
-);
+class BlogPage extends React.Component {
+	static async getInitialProps(req) {
+		return {
+			postId: req.query.postId
+		};
+	}
 
-BlogPage.hero = {
-	title: "Мой блог",
-	description: "В этом разделе я пишу о своей жизни, жизни своего класса"
+	render = () => {
+		const { postId } = this.props;
+
+		return (
+			<div className={styles.authPage}>
+				<Head>
+					<title>Мой персональный блог - Максим Зайцев</title>
+				</Head>
+				<div className="mt3">
+					<Display key={postId} postId={postId} />
+				</div>
+			</div>
+		);
+	};
+}
+
+BlogPage.propTypes = {
+	postId: PropTypes.string
 };
 
 export default BlogPage;

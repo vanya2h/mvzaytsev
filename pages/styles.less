@@ -24,6 +24,7 @@ html {
       a {
         color: @blue;
         border-width: 2px !important;
+
         border-color: lighten(@blue, 40%) !important;
         &:hover {
           color: darken(@blue, 10%);
@@ -47,6 +48,7 @@ a {
   text-decoration: none;
   &:hover {
     border-color: fadeout(@blue, 50%);
+    background: fadeout(@blue, 92%);
   }
 }
 
@@ -79,7 +81,7 @@ small {
   padding-left: 250px;
   min-height: 100vh;
   header {
-    background: lighten(@pale-cherry, 4%);
+    background: #f7e7ea;
   }
 }
 
@@ -98,7 +100,6 @@ small {
 
 .content {
   padding-bottom: 2rem;
-  padding-top: 2rem;
 }
 
 .container {
@@ -108,12 +109,6 @@ small {
 }
 
 .hero {
-  background: linear-gradient(
-    to right,
-    darken(@chocolate, 2%),
-    fadeout(@chocolate, 10%)
-  );
-  color: @pale-cherry;
   padding: 3rem 0;
   .description {
     margin: 0;

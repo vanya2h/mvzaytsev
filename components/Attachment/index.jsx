@@ -1,6 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { Menu, MenuItem } from "@components/Menu";
 import Heading from "@components/Heading";
 import Text from "@components/Text";
 import styles from "./styles";
@@ -11,9 +9,7 @@ class Attachment extends React.PureComponent {
 
 		return (
 			<div className={styles.attachment}>
-				<Menu horizontal>
-					<MenuItem>Тип документа: {type}</MenuItem>
-				</Menu>
+				<small>Тип документа: {type}</small>
 				<Heading size={5}>
 					<a href={url} download={download ? "true" : "false"}>
 						{title}

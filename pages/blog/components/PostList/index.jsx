@@ -1,34 +1,41 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { withRouter } from "next/router";
 import compose from "@utils/compose";
-import { connect } from "react-redux";
-import Loader from "@components/Loader";
-import Button from "@components/Button";
+import { MODEL_POST } from "@consts/_models";
 import SmallContainer from "@components/SmallContainer";
-import { fetchPosts } from "@store/actions/indexPage";
 import Text from "@components/Text";
-import Post from "@components/@views/Post";
+import * as entityList from "@providers/entityList";
+import PostListView from "@components/@views/Post/PostList";
+import PostResolver from "@components/@resolvers/Post";
 import styles from "./styles";
+import { createLoadMoreFunction } from "./creators";
+import PostSkeleton from "./components/PostSkeleton";
 
-class PostList extends React.PureComponent {
-	componentDidMount = () => {
-		const { postsIds, fetchPosts } = this.props;
+class PostList extends React.Component {
+	componentDidUpdate = prevProps => {
+		const { postIds, router } = this.props;
 
-		if (!postsIds) {
-			fetchPosts();
+		if (
+			postIds !== null &&
+			prevProps.postIds === null &&
+			!router.query.postId
+		) {
+			router.push(`/blog/${postIds[0]}`);
 		}
 	};
 
 	render = () => {
 		const {
-			postsIds,
-			fetchPosts,
-			isOverflow,
+			postIds,
+			loadMore,
+			router,
 			isHydrating,
-			hasError
+			isOverflowed,
+			error
 		} = this.props;
 
-		if (hasError) {
+		if (error) {
 			return (
 				<SmallContainer>
 					<Text>
@@ -39,31 +46,39 @@ class PostList extends React.PureComponent {
 			);
 		}
 
-		if (!postsIds) {
+		if (!postIds) {
 			return (
-				<SmallContainer>
-					<Loader centered />
-				</SmallContainer>
+				<div className="flex flex-column">
+					{Array(5).fill(
+						<div className={styles.item}>
+							<PostSkeleton />
+						</div>
+					)}
+				</div>
 			);
 		}
 
 		return (
 			<div className="flex flex-column">
-				{postsIds.map((id, index) => (
+				{postIds.map((postId, index) => (
 					<div key={index} className={styles.item}>
-						<Post postId={id} />
+						<PostResolver post={postId}>
+							{post => (
+								<PostListView
+									active={postId === router.query.postId}
+									post={post}
+								/>
+							)}
+						</PostResolver>
 					</div>
 				))}
-				{!isOverflow && (
-					<div
-						style={{
-							textAlign: "center"
-						}}
-						className="mt2"
-					>
-						<Button loading={isHydrating} onClick={fetchPosts} primary>
-							Подгрузить ещё 10 постов
-						</Button>
+				{!isOverflowed && (
+					<div className="mt2">
+						{!isHydrating ? (
+							<a onClick={loadMore}>Загрузить ещё</a>
+						) : (
+							<span>Подождите..</span>
+						)}
 					</div>
 				)}
 			</div>
@@ -72,36 +87,33 @@ class PostList extends React.PureComponent {
 }
 
 PostList.propTypes = {
-	postsIds: PropTypes.array,
-	isHydrating: PropTypes.bool,
-	hasError: PropTypes.bool,
-	isOverflow: PropTypes.bool.isRequired,
-	fetchPosts: PropTypes.func.isRequired
+	loadMore: PropTypes.func.isRequired,
+	router: PropTypes.any.isRequired,
+	isHydrating: PropTypes.bool.isRequired,
+	error: PropTypes.object,
+	isOverflowed: PropTypes.bool.isRequired,
+	postIds: PropTypes.array
 };
 
 PostList.defaultProps = {
-	postsIds: null,
-	isHydrating: false,
-	hasError: false
+	error: null,
+	postIds: null
 };
 
-const mapStoreToProps = store =>
-	console.log(store) || {
-		postsIds: store.indexPage.posts.postsIds,
-		isHydrating: store.indexPage.posts.isHydrating,
-		hasError: store.indexPage.posts.hasError,
-		isOverflow: store.indexPage.posts.isOverflow
-	};
-
-const mapDispatchToProps = dispatch => ({
-	fetchPosts: () => dispatch(fetchPosts())
-});
-
 const enhance = compose(
-	connect(
-		mapStoreToProps,
-		mapDispatchToProps
-	)
+	withRouter,
+	entityList.withEntityListProvider(() => ({
+		loadMore: createLoadMoreFunction(),
+		id: "posts-blog",
+		model: MODEL_POST
+	})),
+	entityList.withEntityListContext(context => ({
+		isHydrating: context.isHydrating,
+		isOverflowed: context.isOverflowed,
+		postIds: context.entityIds,
+		loadMore: context.loadMore,
+		error: context.error
+	}))
 );
 
 export default enhance(PostList);

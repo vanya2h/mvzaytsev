@@ -4,14 +4,19 @@ import { connect } from "react-redux";
 import { compose } from "@utils/compose";
 import { resolveEntityId } from "@utils/resolveEntityId";
 import { isFunction } from "@utils/isFunction";
-import { insertInCollections } from "@store/actions/collections";
+import { collectionsInsert } from "@store/actions/collections";
 import { selectEntity } from "@store/selectors/collections";
 import { withPropsTransformer } from "./withPropsTransformer.jsx";
 
 export const withEntity = propsToOptionsMapper => mapEntityToProps => Enhanceable => {
 	class ComponentWithEntity extends React.PureComponent {
 		componentDidMount = () => {
-			const { resolvedEntity, insertInCollections, loadEntity } = this.props;
+			const {
+				resolvedEntity,
+				entity,
+				collectionsInsert,
+				loadEntity
+			} = this.props;
 
 			if (typeof entity === "string") {
 				if (!resolvedEntity && isFunction(loadEntity)) {
@@ -20,18 +25,18 @@ export const withEntity = propsToOptionsMapper => mapEntityToProps => Enhanceabl
 			}
 
 			if (typeof entity === "object") {
-				if (resolvedEntity) {
-					return insertInCollections(resolvedEntity);
+				if (!resolvedEntity) {
+					return collectionsInsert(entity);
 				}
 				return this.loadEntity();
 			}
 		};
 
 		loadEntity = async () => {
-			const { insertInCollections, loadEntity } = this.props;
+			const { collectionsInsert, loadEntity } = this.props;
 			const response = await loadEntity();
 
-			await insertInCollections(response.data);
+			await collectionsInsert(response.data);
 		};
 
 		render = () => {
@@ -46,7 +51,7 @@ export const withEntity = propsToOptionsMapper => mapEntityToProps => Enhanceabl
 	}
 
 	ComponentWithEntity.propTypes = {
-		insertInCollections: PropTypes.func.isRequired,
+		collectionsInsert: PropTypes.func.isRequired,
 		resolvedEntity: PropTypes.object,
 		model: PropTypes.string.isRequired,
 		loadEntity: PropTypes.func.isRequired,
@@ -66,8 +71,8 @@ export const withEntity = propsToOptionsMapper => mapEntityToProps => Enhanceabl
 	});
 
 	const mapDispatchToProps = (dispatch, props) => ({
-		insertInCollections: entity =>
-			dispatch(insertInCollections(props.model, [entity]))
+		collectionsInsert: entity =>
+			dispatch(collectionsInsert(props.model, [entity]))
 	});
 
 	const enhance = compose(

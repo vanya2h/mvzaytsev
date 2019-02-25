@@ -13,3 +13,4 @@ export { to } from "./to";
 export { parseError } from "./parseError";
 export { parseStyles } from "./parseStyles";
 export { resolveAttachmentUrl } from "./resolveAttachmentUrl";
+export { createS3URL } from "./createS3URL";

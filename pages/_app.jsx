@@ -21,16 +21,13 @@ bindNProgress();
 moment.locale("ru");
 
 class MyApp extends App {
-	static async getInitialProps({ Component, ctx }) {
-		let pageProps = {};
-		if (Component.getInitialProps) {
-			pageProps = await Component.getInitialProps(ctx);
-		}
-
-		return {
-			pageProps
-		};
-	}
+	// static async getInitialProps(context) {
+	// return {
+	// 	...(context.Component.getInitialProps
+	// 		? await context.Component.getInitialProps(context)
+	// 		: {})
+	// };
+	// }
 
 	render() {
 		const { Component, pageProps, store } = this.props;

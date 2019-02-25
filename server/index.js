@@ -17,6 +17,11 @@ export default dirname =>
 
 		server.use(cookieParser());
 		server.use("/static", express.static(dirname + "/.next/static"));
+
+		server.get("/blog/:id", (req, res) =>
+			app.render(req, res, "/blog", { postId: req.params.id })
+		);
+
 		server.get("*", (req, res) => handle(req, res));
 
 		server.listen(envConfig.port, err => {

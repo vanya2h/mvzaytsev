@@ -1,0 +1,40 @@
+@import "~@theme/mixins/skeleton";
+
+.image {
+  .skeleton-animated-block(100%, 350px);
+}
+
+.title {
+  margin-top: 1rem;
+  .skeleton-animated-block(80%, 40px);
+}
+
+.meta {
+  display: flex;
+  flex-flow: row nowrap;
+  margin-top: 0.5rem;
+  .item {
+    .skeleton-animated-block(120px, 15px);
+    margin-right: 1rem;
+  }
+}
+
+.content {
+  margin-top: 2rem;
+  .item {
+    .skeleton-animated-block(80%, 15px);
+    margin-bottom: 1rem;
+    &:nth-child(2) {
+      width: 70%;
+    }
+    &:nth-child(3) {
+      width: 85%;
+    }
+    &:nth-child(4) {
+      width: 78%;
+    }
+    &:nth-child(5) {
+      width: 88%;
+    }
+  }
+}

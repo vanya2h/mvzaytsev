@@ -1,8 +1,6 @@
 import React from "react";
 import Head from "next/head";
 import Attachment from "@components/Attachment";
-import Heading from "@components/Heading";
-import Alert from "@components/Alert";
 import { resolveAttachmentUrl } from "@utils/resolveAttachmentUrl";
 import styles from "./styles";
 
@@ -52,19 +50,7 @@ const ParentHealthPage = () => (
 				style={{
 					flex: "1 1 0"
 				}}
-			>
-				<Alert info>
-					<Heading
-						size={5}
-						style={{
-							display: "inline"
-						}}
-					>
-						Замечание
-					</Heading>{" "}
-					Для скачивания файлов просто кликните на имя файла, подсвеченное синим
-				</Alert>
-			</div>
+			/>
 		</div>
 	</div>
 );
