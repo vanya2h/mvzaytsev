@@ -59,6 +59,7 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
+    "string-to-color": "^2.0.1",
     "throttle-debounce": "^2.1.0",
     "truncate-html": "^1.0.1"
   },

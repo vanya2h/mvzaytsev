@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { selectListEntityIds } from "@store/selectors/lists";
+import * as listSelectors from "@store/selectors/lists";
 import { listsInsertItems } from "@store/actions/lists";
 import { parseError } from "@utils/parseError";
 import { resolveEntityId } from "@utils/resolveEntityId";
@@ -14,22 +14,21 @@ export const entityListContext = React.createContext();
 class EntityListProviderClass extends React.PureComponent {
 	state = {
 		isHydrating: false,
-		isOverflowed: false,
 		error: null
 	};
 
 	componentDidMount = () => {
-		const { autoLoad } = this.props;
+		const { autoLoad, isOverflowed } = this.props;
 
-		if (autoLoad) {
+		if (autoLoad && !isOverflowed) {
 			this.loadMore();
 		}
 	};
 
-	appendItems = async itemIds => {
+	appendItems = async (itemIds, last) => {
 		const { insertInList } = this.props;
 
-		await insertInList(itemIds);
+		await insertInList(itemIds, last);
 
 		return Promise.resolve(this.state.entityIds);
 	};
@@ -57,11 +56,13 @@ class EntityListProviderClass extends React.PureComponent {
 
 			await collectionsInsert(response.data);
 
-			await this.appendItems(response.data.map(resolveEntityId));
+			await this.appendItems(
+				response.data.map(resolveEntityId),
+				response.data.length < perPage
+			);
 
 			await this.asyncSetState({
-				isHydrating: false,
-				isOverflowed: response.data.length < perPage
+				isHydrating: false
 			});
 
 			return Promise.resolve(response.data);
@@ -81,6 +82,7 @@ class EntityListProviderClass extends React.PureComponent {
 		<entityListContext.Provider
 			value={{
 				...this.state,
+				isOverflowed: this.props.isOverflowed,
 				loadMore: this.loadMore,
 				appendItems: this.appendItems,
 				entityIds: this.props.entityIds
@@ -98,18 +100,23 @@ EntityListProviderClass.propTypes = {
 	children: PropTypes.element.isRequired,
 	perPage: PropTypes.number,
 	autoLoad: PropTypes.bool,
+	isOverflowed: PropTypes.bool,
 	entityIds: PropTypes.array,
 	insertInList: PropTypes.func.isRequired
 };
 
 EntityListProviderClass.defaultProps = {
 	perPage: 10,
+	isOverflowed: false,
 	entityIds: null,
 	autoLoad: true
 };
 
 const mapStoreToProps = (store, ownProps) => ({
-	entityIds: selectListEntityIds(store, {
+	entityIds: listSelectors.selectListEntityIds(store, {
+		listId: ownProps.id
+	}),
+	isOverflowed: listSelectors.selectListIsOverflowed(store, {
 		listId: ownProps.id
 	})
 });
@@ -117,7 +124,8 @@ const mapStoreToProps = (store, ownProps) => ({
 const mapDispatchToProps = (dispatch, ownProps) => ({
 	collectionsInsert: items =>
 		dispatch(collectionsInsert(ownProps.model, items)),
-	insertInList: itemIds => dispatch(listsInsertItems(ownProps.id, itemIds))
+	insertInList: (itemIds, last) =>
+		dispatch(listsInsertItems(ownProps.id, itemIds, last))
 });
 
 const enhance = compose(

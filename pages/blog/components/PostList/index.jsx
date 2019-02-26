@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { withRouter } from "next/router";
 import compose from "@utils/compose";
 import { MODEL_POST } from "@consts/_models";
-import SmallContainer from "@components/SmallContainer";
+import Alert from "@components/Alert";
 import Text from "@components/Text";
 import * as entityList from "@providers/entityList";
 import PostListView from "@components/@views/Post/PostList";
@@ -45,12 +45,12 @@ class PostList extends React.Component {
 
 		if (error) {
 			return (
-				<SmallContainer>
-					<Text>
+				<Alert error>
+					<Text relaxed>
 						😑 В данный момент не удаётся загрузить последние посты из блога.
 						Попробуйте позже
 					</Text>
-				</SmallContainer>
+				</Alert>
 			);
 		}
 

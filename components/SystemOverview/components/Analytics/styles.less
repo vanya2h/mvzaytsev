@@ -1,0 +1,19 @@
+.centered {
+  text-align: center;
+}
+
+.item {
+  display: flex;
+  flex-flow: row nowrap;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid fadeout(black, 90%);
+  width: 33%;
+  .number {
+    margin-right: 1rem;
+  }
+  &:last-child {
+    border-right: 0;
+  }
+}

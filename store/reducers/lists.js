@@ -11,10 +11,16 @@ export const lists = (state = initialState, action) => {
 			...state,
 			lists: {
 				...(state.lists || {}),
-				[action.payload.listId]: [
-					...(state.lists[action.payload.listId] || []),
-					...action.payload.items
-				]
+				[action.payload.listId]: {
+					...(state.lists[action.payload.listId] || {}),
+					isOverflowed: action.payload.last,
+					items: [
+						...(state.lists[action.payload.listId]
+							? state.lists[action.payload.listId].items
+							: []),
+						...action.payload.items
+					]
+				}
 			}
 		};
 
