@@ -6,7 +6,6 @@ import Home from "react-feather/dist/icons/home";
 import Bookopen from "react-feather/dist/icons/book-open";
 import UsersIcon from "react-feather/dist/icons/users";
 import PenIcon from "react-feather/dist/icons/edit";
-import FeathersIcon from "react-feather/dist/icons/feather";
 import LoginIcon from "react-feather/dist/icons/log-in";
 import Book from "react-feather/dist/icons/book";
 import BellIcon from "react-feather/dist/icons/bell";
@@ -84,6 +83,7 @@ class Sidebar extends React.PureComponent {
 										<MenuItem link="/students/football">
 											Футбольная сеция
 										</MenuItem>
+										<MenuItem link="/lessons">Планы уроков</MenuItem>
 									</React.Fragment>
 								}
 								icon={<UsersIcon className={styles.icon} size={18} />}
@@ -96,12 +96,7 @@ class Sidebar extends React.PureComponent {
 							>
 								Эл. дневник
 							</MenuItem>
-							<MenuItem
-								link="/lessons"
-								icon={<FeathersIcon className={styles.icon} size={18} />}
-							>
-								Планы уроков
-							</MenuItem>
+
 							<MenuItem
 								link="/work"
 								icon={<UserIcon className={styles.icon} size={18} />}
