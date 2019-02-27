@@ -25,28 +25,18 @@
 }
 
 .advantages {
+  color: @pale-cherry;
   .content {
-    flex: 1 1 0;
+    width: 50%;
     font-size: 110%;
+    .inner {
+      padding: 3rem;
+    }
   }
   .photo {
-    flex: 1 1 0;
+    width: 50%;
     position: relative;
     min-height: 350px;
-    img {
-      border-radius: 1rem;
-      border-bottom-right-radius: 2rem;
-      box-shadow: 0 0 0 6px #f4ca8b;
-    }
-    .repair {
-      position: absolute;
-      z-index: 10;
-      left: -40px;
-      top: -44px;
-      img {
-        box-shadow: none;
-      }
-    }
   }
 }
 
@@ -54,7 +44,6 @@
   .content {
     position: relative;
     background-size: contain;
-    padding: 3.5rem;
     background-position: bottom center;
     .decor {
       width: 64px;
@@ -98,4 +87,16 @@
 
 .text {
   font-size: 120%;
+}
+
+.style1 {
+  background: fadeout(@chocolate, 10%);
+}
+
+.style2 {
+  background: fadeout(@chocolate, 15%);
+}
+
+.style3 {
+  background: fadeout(@chocolate, 25%);
 }

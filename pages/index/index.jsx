@@ -9,113 +9,9 @@ import ArrowRight from "react-feather/dist/icons/arrow-right";
 import styles from "./styles";
 
 const IndexPage = () => (
-	<div className={styles.indexPage}>
-		<HeadComp>
-			<title>Максим Зайцев - личный сайт</title>
-		</HeadComp>
-		<div className="mt4 mb4">
-			<div className={cl(styles.advantages, "flex", "flex-column")}>
-				<div
-					className={cl(
-						"mt2 mb2",
-						"flex",
-						"items-center",
-						styles.advantage,
-						styles.style1
-					)}
-				>
-					<div className={styles.photo}>
-						<img src={require("./img/a1.jpg")} width="100%" />
-						<div className={cl(styles.repair)}>
-							<img src={require("./img/repair.png")} width="96px" />
-						</div>
-					</div>
-					<div className={styles.content}>
-						<Heading size={3} className={styles.head}>
-							Я люблю свою работу!
-						</Heading>
-						<Text>
-							Я – человек активной жизненной позиции. Мне интересно всё: работа,
-							общение с людьми, книги, спорт, культурная жизнь города и
-							путешествия.
-						</Text>
-						<Text>
-							<small>
-								Я согласен с утверждением, что жизнь – это движение. И поэтому
-								стремлюсь всё успеть, всё сделать, всё увидеть, всё понять. И не
-								случайно моё педагогическое кредо: «Во всём мне хочется дойти до
-								самой сути…»
-							</small>
-						</Text>
-						<div className={cl(styles.decor, styles.n1)}>
-							<img src={require("./img/books.png")} width="100%" />
-						</div>
-						<div className={cl(styles.decor, styles.n2)}>
-							<img src={require("./img/pen.png")} width="100%" />
-						</div>
-					</div>
-				</div>
-				<div
-					className={cl(
-						"mt2 mb2",
-						"flex",
-						"items-center",
-						styles.advantage,
-						styles.style1
-					)}
-				>
-					<div className={styles.content}>
-						<Text>
-							« Мысль подрастающего поколения, надо крепко держать ее в руках,
-							если не хочешь выпустить из рук будущее »
-						</Text>
-						<Text className="italic">— Анри Барбюс</Text>
-						<div className={cl(styles.decor, styles.n3)}>
-							<img src={require("./img/smile.png")} width="100%" />
-						</div>
-						<div className={cl(styles.decor, styles.n4)}>
-							<img src={require("./img/ring.png")} width="100%" />
-						</div>
-					</div>
-					<div className={styles.photo}>
-						<img src={require("./img/a3.png")} width="100%" />
-						<div className={cl(styles.repair, styles.even)}>
-							<img src={require("./img/repair.png")} width="96px" />
-						</div>
-					</div>
-				</div>
-				<div
-					className={cl(
-						"mt2 mb2",
-						"flex",
-						"items-center",
-						styles.advantage,
-						styles.style1
-					)}
-				>
-					<div className={styles.photo}>
-						<img src={require("./img/a2.png")} width="100%" />
-						<div className={cl(styles.repair)}>
-							<img src={require("./img/repair.png")} width="96px" />
-						</div>
-					</div>
-					<div className={styles.content}>
-						<div className={cl(styles.decor, styles.n5)}>
-							<img src={require("./img/konki.png")} width="100%" />
-						</div>
-						<div className={cl(styles.decor, styles.n6)}>
-							<img src={require("./img/football.png")} width="100%" />
-						</div>
-						<Text>
-							« Спорт становится средством воспитания тогда, когда он любимое
-							занятие каждого »
-						</Text>
-						<Text className="italic">— Василий Александрович Сухомлинский</Text>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	<HeadComp>
+		<title>Максим Зайцев - личный сайт</title>
+	</HeadComp>
 );
 
 const Head = () => (
@@ -171,6 +67,108 @@ const Head = () => (
 	</div>
 );
 
-IndexPage.before = <Head />;
+IndexPage.before = (
+	<React.Fragment>
+		<Head />
+		<div className="mt4">
+			<div className={cl(styles.advantages, "flex", "flex-column")}>
+				<div
+					className={cl(
+						"flex",
+						"items-center",
+						styles.advantage,
+						styles.style1
+					)}
+				>
+					<div className={styles.photo}>
+						<img src={require("./img/a1.jpg")} width="100%" />
+					</div>
+					<div className={styles.content}>
+						<div className={styles.inner}>
+							<Heading size={3} className={styles.head}>
+								Я люблю свою работу!
+							</Heading>
+							<Text>
+								Я – человек активной жизненной позиции. Мне интересно всё:
+								работа, общение с людьми, книги, спорт, культурная жизнь города
+								и путешествия.
+							</Text>
+							<Text>
+								<small>
+									Я согласен с утверждением, что жизнь – это движение. И поэтому
+									стремлюсь всё успеть, всё сделать, всё увидеть, всё понять. И
+									не случайно моё педагогическое кредо: «Во всём мне хочется
+									дойти до самой сути…»
+								</small>
+							</Text>
+						</div>
+						<div className={cl(styles.decor, styles.n1)}>
+							<img src={require("./img/books.png")} width="100%" />
+						</div>
+						<div className={cl(styles.decor, styles.n2)}>
+							<img src={require("./img/pen.png")} width="100%" />
+						</div>
+					</div>
+				</div>
+				<div
+					className={cl(
+						"flex",
+						"items-center",
+						styles.advantage,
+						styles.style2
+					)}
+				>
+					<div className={styles.content}>
+						<div className={styles.inner}>
+							<Text>
+								« Мысль подрастающего поколения, надо крепко держать ее в руках,
+								если не хочешь выпустить из рук будущее »
+							</Text>
+							<Text className="italic">— Анри Барбюс</Text>
+						</div>
+						<div className={cl(styles.decor, styles.n3)}>
+							<img src={require("./img/smile.png")} width="100%" />
+						</div>
+						<div className={cl(styles.decor, styles.n4)}>
+							<img src={require("./img/ring.png")} width="100%" />
+						</div>
+					</div>
+					<div className={styles.photo}>
+						<img src={require("./img/a3.png")} width="100%" />
+					</div>
+				</div>
+				<div
+					className={cl(
+						"flex",
+						"items-center",
+						styles.advantage,
+						styles.style3
+					)}
+				>
+					<div className={styles.photo}>
+						<img src={require("./img/a2.jpg")} width="100%" />
+					</div>
+					<div className={styles.content}>
+						<div className={cl(styles.decor, styles.n5)}>
+							<img src={require("./img/konki.png")} width="100%" />
+						</div>
+						<div className={cl(styles.decor, styles.n6)}>
+							<img src={require("./img/football.png")} width="100%" />
+						</div>
+						<div className={styles.inner}>
+							<Text>
+								« Спорт становится средством воспитания тогда, когда он любимое
+								занятие каждого »
+							</Text>
+							<Text className="italic">
+								— Василий Александрович Сухомлинский
+							</Text>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</React.Fragment>
+);
 
 export default IndexPage;
