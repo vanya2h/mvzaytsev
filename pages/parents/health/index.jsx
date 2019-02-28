@@ -25,7 +25,7 @@ const ParentHealthPage = () => (
 				/>
 				<Attachment
 					type="pdf"
-					title="Вопрос: Нужна ли зарядка"
+					title="Вопрос: нужна ли зарядка?"
 					url={resolveAttachmentUrl(
 						"383763bdf76870e49d3eca60798ddf9e1549453598521.pdf"
 					)}

@@ -26,7 +26,9 @@ const Head = () => (
 		</div>
 		<div className={cl(styles.right, "flex", "items-center")}>
 			<div className="p3">
-				<Heading size={1}>Максим Зайцев</Heading>
+				<Heading style={{ fontWeight: "300" }} size={2}>
+					<small>Сайт учителя математики</small> Зайцева Максима Викторовича
+				</Heading>
 				<div className={styles.text}>
 					<Text>
 						Здравствуйте! Меня зовут{" "}
@@ -34,12 +36,12 @@ const Head = () => (
 							<a>Зайцев Максим Викторович</a>
 						</Link>
 						. Я окончил Ярославский государственный университет им. П. Г.
-						Демидова по специальности {"Прикладная математика и информатика"}. 
+						Демидова по специальности «Прикладная математика и информатика». 
 					</Text>
 					<Text>
 						<small>
 							Я - учитель 5-11-х классов с восьмилетним стажем работы. На данный
-							момент, преподаю математику в{" "}
+							момент преподаю математику в{" "}
 							<a
 								href="http://www.eduportal44.ru/Kostroma_EDU/Kos-Sch-8/SitePages/%D0%94%D0%BE%D0%BC%D0%B0%D1%88%D0%BD%D1%8F%D1%8F.aspx"
 								target="_blank"
@@ -85,7 +87,13 @@ IndexPage.before = (
 					</div>
 					<div className={styles.content}>
 						<div className={styles.inner}>
-							<Heading size={3} className={styles.head}>
+							<Heading
+								style={{
+									fontWeight: "300"
+								}}
+								size={2}
+								className={styles.head}
+							>
 								Я люблю свою работу!
 							</Heading>
 							<Text>

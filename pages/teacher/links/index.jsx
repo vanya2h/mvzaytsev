@@ -57,8 +57,8 @@ const TeacherLinksPage = () => (
 );
 
 TeacherLinksPage.hero = {
-	title: "Для учителей - здоровье",
-	description: "Полезные материалы на тему здоровья для учителей"
+	title: "Полезные ссылки для учителей",
+	description: "Полезные сайты и порталы для учителей в одном месте"
 };
 
 export default TeacherLinksPage;

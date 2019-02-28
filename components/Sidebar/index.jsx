@@ -70,6 +70,7 @@ class Sidebar extends React.PureComponent {
 										<MenuItem link="/teacher/health">Здоровье учителя</MenuItem>
 										<MenuItem link="/teacher/links">Полезные ссылки</MenuItem>
 										<MenuItem link="/teacher/class">Классные часы</MenuItem>
+										<MenuItem link="/lessons">Планы уроков</MenuItem>
 									</React.Fragment>
 								}
 							>
@@ -80,10 +81,17 @@ class Sidebar extends React.PureComponent {
 									<React.Fragment>
 										<MenuItem link="/students/gia">Подготовка к ГИА</MenuItem>
 										<MenuItem link="/students/think">Думай, решай</MenuItem>
+										<MenuItem link="/students/lessons">
+											Фрагменты уроков
+										</MenuItem>
+										<MenuItem link="/students/links">Полезные ссылки</MenuItem>
+										<MenuItem link="/students/phone">Телефон доверия</MenuItem>
+										<MenuItem link="/students/remember">
+											Памятки для учащихся
+										</MenuItem>
 										<MenuItem link="/students/football">
 											Футбольная сеция
 										</MenuItem>
-										<MenuItem link="/lessons">Планы уроков</MenuItem>
 									</React.Fragment>
 								}
 								icon={<UsersIcon className={styles.icon} size={18} />}
