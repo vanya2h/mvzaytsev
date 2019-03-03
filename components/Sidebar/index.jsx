@@ -72,6 +72,9 @@ class Sidebar extends React.PureComponent {
 										<MenuItem link="/teacher/links">Полезные ссылки</MenuItem>
 										<MenuItem link="/teacher/class">Классные часы</MenuItem>
 										<MenuItem link="/lessons">Планы уроков</MenuItem>
+										<MenuItem link="/blog/5c7c1ee5ed95d671c4b29536">
+											Общественная экспертиза
+										</MenuItem>
 									</React.Fragment>
 								}
 							>
@@ -82,9 +85,7 @@ class Sidebar extends React.PureComponent {
 									<React.Fragment>
 										<MenuItem link="/students/gia">Подготовка к ГИА</MenuItem>
 										<MenuItem link="/students/think">Думай, решай</MenuItem>
-										<MenuItem link="/blog/5c7c1ee5ed95d671c4b29536">
-											Общественная экспертиза
-										</MenuItem>
+
 										<MenuItem link="/students/lessons">
 											Фрагменты уроков
 										</MenuItem>
