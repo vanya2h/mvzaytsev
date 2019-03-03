@@ -23,16 +23,8 @@ const StudentsLinksPage = () => (
 				url="http://obrnadzor.gov.ru/ru/about/general_information/"
 			/>
 			<LinkCard
-				title="Министерство образования и науки РФ"
-				url="http://mon.gov.ru/"
-			/>
-			<LinkCard
 				title="Открытая математика. Сайт компании ФИЗИКОН"
 				url="http://www.mathematics.ru/"
-			/>
-			<LinkCard
-				title="Федеральный институт педагогических измерений"
-				url="http://www.fipi.ru/"
 			/>
 			<LinkCard title="Все ВУЗы России" url="http://abitur.nica.ru/" />
 			<LinkCard

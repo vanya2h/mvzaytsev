@@ -1,5 +1,28 @@
-@import "~@theme/colors";
-.body {
-  font-size: 0.9rem;
-  line-height: 1.6rem;
+.footer {
+  display: grid;
+
+  grid: "menu info" auto / auto 300px;
+  grid-column-gap: 2rem;
+
+  padding: 2rem 0;
+  padding-bottom: 1rem;
+}
+
+.menu {
+  grid-area: menu;
+}
+
+.info {
+  grid-area: info;
+}
+
+@media screen and (max-width: 915px) {
+  .footer {
+    grid: "info" auto "menu" auto / 100%;
+    grid-auto-flow: column;
+  }
+
+  .menu {
+    margin-top: 1rem;
+  }
 }

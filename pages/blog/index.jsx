@@ -19,9 +19,7 @@ class BlogPage extends React.Component {
 				<Head>
 					<title>Мой персональный блог - Максим Зайцев</title>
 				</Head>
-				<div className="mt3">
-					<Display key={postId} postId={postId} />
-				</div>
+				<Display key={postId} postId={postId} />
 			</div>
 		);
 	};

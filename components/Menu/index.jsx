@@ -61,6 +61,7 @@ export class MenuItem extends React.Component {
 	render = () => {
 		const {
 			children,
+			href,
 			link,
 			active,
 			className,
@@ -89,7 +90,7 @@ export class MenuItem extends React.Component {
 				) : (
 					<span className={styles.area}>
 						<span className={styles.trigger}>
-							<a>
+							<a href={href}>
 								<span className={styles.children}>{children}</span>
 							</a>
 						</span>
@@ -103,9 +104,11 @@ export class MenuItem extends React.Component {
 
 MenuItem.propTypes = {
 	icon: PropTypes.element,
+	href: PropTypes.string,
 	sub: PropTypes.any
 };
 
 MenuItem.defaultProps = {
-	icon: null
+	icon: null,
+	href: null
 };

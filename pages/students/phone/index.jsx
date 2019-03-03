@@ -15,7 +15,11 @@ const StudentsPhonePage = () => (
 					родителей. Работает с 1 сентября 2010 года
 				</Text>
 				<div className="mt2">
-					<a href="https://telefon-doveria.ru/" target="_blank">
+					<a
+						href="https://telefon-doveria.ru/"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
 						Перейти на сайт
 					</a>
 				</div>

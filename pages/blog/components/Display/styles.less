@@ -1,14 +1,23 @@
 .layout {
-  display: flex;
-  flex-flow: row nowrap;
+  display: grid;
+  grid:
+    "main aside" auto
+    / auto 300px;
+
+  grid-column-gap: 2rem;
+}
+
+@media screen and (max-width: 970px) {
+  .layout {
+    grid: "main" auto "aside" auto / 100%;
+    grid-row-gap: 2rem;
+  }
 }
 
 .main {
-  flex-grow: 1;
+  grid-area: main;
 }
 
 .aside {
-  margin-left: 2rem;
-  max-width: 300px;
-  min-width: 300px;
+  grid-area: aside;
 }

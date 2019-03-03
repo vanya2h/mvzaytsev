@@ -1,19 +1,13 @@
 @import "~@theme/colors";
 
 .wrapper {
-  color: @pale-cherry;
+  color: white;
   display: flex;
   flex-direction: column;
+  height: 100%;
 
   .top {
     flex-grow: 1;
-  }
-  a {
-    color: @pale-cherry;
-    border-color: fadeout(@pale-cherry, 65%);
-    &:hover {
-      border-color: fadeout(@pale-cherry, 30%);
-    }
   }
 }
 
@@ -23,7 +17,7 @@
 }
 
 .icon {
-  color: fadeout(@pale-cherry, 50%);
+  color: fadeout(white, 50%);
   float: right;
 }
 

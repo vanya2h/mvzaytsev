@@ -1,6 +1,7 @@
 import React from "react";
 import Head from "next/head";
-import Attachment from "@components/Attachment";
+import Heading from "@components/Heading";
+import Text from "@components/Text";
 import styles from "./styles";
 
 const StudentsLessonsPage = () => (
@@ -8,28 +9,35 @@ const StudentsLessonsPage = () => (
 		<Head>
 			<title>Для учеников - фрагменты уроков - Максим Зайцев</title>
 		</Head>
-		<div
-			style={{
-				flex: "3 1 0"
-			}}
-			className={styles.list}
-		>
-			<Attachment
-				type="mpg"
-				title="Сложение дробей с разными знаменателями (6 класс).mpg"
-				url="https://drive.google.com/open?id=1Eq2f1bq649YV9ZYPa9IBXptZrugBUGj5"
-			/>
-			<Attachment
-				type="mpg"
-				title="Построение сечений (10 класс).mpg"
-				url="https://drive.google.com/open?id=1DyGWmeA_epe6kmrSm4BDzveiLSBsW2Ro"
-			/>
-			<Attachment
-				type="mpg"
-				title="Устный счет (6 класс).mpg"
-				url="https://drive.google.com/open?id=15gJL8g4hDSIycRE774WfX5bkg5SMGydB"
-			/>
+
+		<div>
+			<Heading size={4}>Сложение дробей с разными знаменателями</Heading>
+			<Text relaxed>Материал для 6 класса</Text>
 		</div>
+		<iframe
+			src="https://drive.google.com/file/d/1Eq2f1bq649YV9ZYPa9IBXptZrugBUGj5/preview"
+			width="100%"
+			height="460px"
+		/>
+
+		<div>
+			<Heading size={4}>Построение сечений</Heading>
+			<Text relaxed>Материал для 10 класса</Text>
+		</div>
+		<iframe
+			src="https://drive.google.com/file/d/1DyGWmeA_epe6kmrSm4BDzveiLSBsW2Ro/preview"
+			width="100%"
+			height="460px"
+		/>
+		<div>
+			<Heading size={4}>Устный счет</Heading>
+			<Text relaxed>Материал для 6 класса</Text>
+		</div>
+		<iframe
+			src="https://drive.google.com/file/d/15gJL8g4hDSIycRE774WfX5bkg5SMGydB/preview"
+			width="100%"
+			height="460px"
+		/>
 	</div>
 );
 

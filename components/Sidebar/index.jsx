@@ -5,6 +5,7 @@ import Link from "next/link";
 import Home from "react-feather/dist/icons/home";
 import Bookopen from "react-feather/dist/icons/book-open";
 import UsersIcon from "react-feather/dist/icons/users";
+import CodeIcon from "react-feather/dist/icons/code";
 import PenIcon from "react-feather/dist/icons/edit";
 import LoginIcon from "react-feather/dist/icons/log-in";
 import Book from "react-feather/dist/icons/book";
@@ -81,6 +82,9 @@ class Sidebar extends React.PureComponent {
 									<React.Fragment>
 										<MenuItem link="/students/gia">Подготовка к ГИА</MenuItem>
 										<MenuItem link="/students/think">Думай, решай</MenuItem>
+										<MenuItem link="/blog/5c7c1ee5ed95d671c4b29536">
+											Общественная экспертиза
+										</MenuItem>
 										<MenuItem link="/students/lessons">
 											Фрагменты уроков
 										</MenuItem>
@@ -116,6 +120,12 @@ class Sidebar extends React.PureComponent {
 								icon={<BellIcon className={styles.icon} size={18} />}
 							>
 								Учитель года 2019
+							</MenuItem>
+							<MenuItem
+								link="/poll"
+								icon={<CodeIcon className={styles.icon} size={18} />}
+							>
+								Пройти опрос
 							</MenuItem>
 						</Menu>
 					</div>

@@ -5,26 +5,24 @@ import { compose } from "@utils/compose";
 import { selectIsAuthed } from "@store/selectors/user";
 import Menu from "./components/Menu";
 import User from "./components/User";
+import AuthButton from "./components/AuthButton";
 import Clock from "./components/Clock";
+import styles from "./styles";
 
 class Header extends React.PureComponent {
 	render = () => {
 		const { isAuthed } = this.props;
 
 		return (
-			<div className="flex justify-between content-center">
-				<div>
+			<div className={styles.header}>
+				<div className={styles.menu}>
 					<Menu />
 				</div>
-				<div className="flex flex-row items-center">
-					<div>
-						<Clock />
-					</div>
-					{isAuthed && (
-						<div className="ml2">
-							<User />
-						</div>
-					)}
+				<div className={styles.clock}>
+					<Clock />
+				</div>
+				<div className={styles.user}>
+					{isAuthed ? <User /> : <AuthButton />}
 				</div>
 			</div>
 		);

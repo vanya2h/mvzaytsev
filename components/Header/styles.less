@@ -1,0 +1,27 @@
+.header {
+  display: grid;
+  grid:
+    [row1-start] "menu clock user" auto [row1-end]
+    / auto 230px 200px;
+}
+
+@media screen and (max-width: 870px) {
+  .header {
+    grid:
+      [row1-start] "clock clock" auto [row1-end]
+      [row2-start] "menu user" auto [row2-end] / 65% 35%;
+  }
+}
+
+.menu {
+  grid-area: menu;
+}
+
+.clock {
+  grid-area: clock;
+}
+
+.user {
+  grid-area: user;
+  justify-self: end;
+}

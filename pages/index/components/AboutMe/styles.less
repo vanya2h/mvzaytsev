@@ -1,0 +1,129 @@
+@import "~@theme/colors";
+
+.slide {
+  position: relative;
+
+  blockquote {
+    font-size: 1.25rem;
+    margin-top: 0;
+    position: relative;
+    small {
+      display: block;
+      font-size: 1.1rem !important;
+      margin-top: 1rem;
+      color: darken(@pale-cherry, 15%);
+      line-height: 1.6;
+      max-width: 258px;
+      text-align: right;
+      margin-left: auto;
+      &:before {
+        content: "ー";
+        margin-right: 0.5rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .slide {
+    blockquote {
+      text-align: center;
+      padding: 0;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+  }
+}
+
+.slide1 {
+  .title {
+    text-align: center;
+  }
+
+  .imageWithText {
+    display: grid;
+    grid: "photo text" auto / 50% 50%;
+    grid-column-gap: 2rem;
+    align-items: center;
+    margin-top: 2rem;
+
+    .photo {
+      grid-area: photo;
+      max-width: 100%;
+      img {
+        width: 100%;
+      }
+    }
+
+    .text {
+      grid-area: text;
+    }
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .slide1 {
+    .imageWithText {
+      grid: "photo" auto "text" auto / 100%;
+      grid-row-gap: 2rem;
+    }
+  }
+}
+
+.slide2 {
+  display: grid;
+  grid: "quote photo" auto / 50% 50%;
+  grid-column-gap: 2rem;
+  align-items: center;
+  margin-top: 2rem;
+
+  .photo {
+    grid-area: photo;
+    max-width: 100%;
+    img {
+      width: 100%;
+    }
+  }
+
+  .quote {
+    grid-area: quote;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .slide2 {
+    grid: "photo" auto "quote" auto / 100%;
+    grid-row-gap: 2rem;
+  }
+}
+
+.slide3 {
+  display: grid;
+  grid: "photo quote" auto / 50% 50%;
+  grid-column-gap: 2rem;
+  align-items: center;
+  margin-top: 2rem;
+
+  .photo {
+    grid-area: photo;
+    max-width: 100%;
+    img {
+      width: 100%;
+    }
+  }
+
+  .quote {
+    grid-area: quote;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .slide3 {
+    grid: "photo" auto "quote" auto / 100%;
+    grid-row-gap: 2rem;
+  }
+}
+
+.scaledText {
+  font-size: 1.3rem;
+}

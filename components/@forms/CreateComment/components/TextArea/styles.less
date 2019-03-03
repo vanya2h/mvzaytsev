@@ -1,9 +1,19 @@
+@import "~@theme/colors";
+
 .error {
   color: rgb(194, 96, 96);
 }
 
 .textarea {
   border: none !important;
-  background: fadeout(black, 95%) !important;
+  color: @pale-cherry !important;
+  background: @chocolate !important;
   resize: none !important;
+  &::placeholder {
+    color: fadeout(@pale-cherry, 50%) !important;
+  }
+  &:focus {
+    outline: none;
+    box-shadow: none !important;
+  }
 }

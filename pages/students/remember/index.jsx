@@ -16,27 +16,38 @@ const StudentsRememberPage = () => (
 			}}
 			className={styles.list}
 		>
-			<Attachment
-				type="mpg"
-				title="Правила поведения в школе.mp4"
-				url="https://drive.google.com/open?id=1XVSt738JkV1BrQhzCHu2_vophM6d3Cub"
+			<div>
+				<Heading size={4}>Правила поведения в школе</Heading>
+				<Text relaxed>Обучающий видеоролик</Text>
+			</div>
+			<iframe
+				src="https://drive.google.com/file/d/1XVSt738JkV1BrQhzCHu2_vophM6d3Cub/preview"
+				width="100%"
+				height="460px"
 			/>
+			<div>
+				<Heading size={4}>Правила дорожного движения (ПДД)</Heading>
+				<Text relaxed>Обучающий видеоролик</Text>
+			</div>
+			<iframe
+				width="100%"
+				height="460px"
+				src="https://www.youtube.com/embed/Ij68FZTE_SI"
+				frameBorder="0"
+				allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+				allowFullScreen
+			/>
+			<div>
+				<Heading size={4}>Полезные файлы</Heading>
+				<Text relaxed>
+					Также посмотрите правила поведения учащихся на каникулах
+				</Text>
+			</div>
 			<Attachment
 				type="doc"
 				title="Правила поведения учащихся на каникулах» Общие положения.doc"
 				url="https://drive.google.com/open?id=1nU7C1CHsjkFdkPkbuNQUvyUYqelkLGPO"
 			/>
-			<Attachment
-				type="docx"
-				title="Подумать.docx"
-				url="https://drive.google.com/open?id=10tvzH1jL-yFlOC_QOfnBTtEpgKX8Li4A"
-			/>
-		</div>
-		<div className="mt3">
-			<Text relaxed>
-				Единый общероссийский телефон доверия для детей и подростков
-			</Text>
-			<Heading size={2}>8-800-2000-122</Heading>
 		</div>
 	</div>
 );

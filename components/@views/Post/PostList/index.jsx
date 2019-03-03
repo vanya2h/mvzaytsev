@@ -1,6 +1,8 @@
 import React from "react";
 import cl from "classnames";
 import Link from "next/link";
+import Truncate from "react-truncate";
+import LikeIcon from "react-feather/dist/icons/heart";
 import moment from "moment";
 import Text from "@components/Text";
 import PropTypes from "prop-types";
@@ -13,12 +15,24 @@ class PostPreview extends React.PureComponent {
 
 		return (
 			<div className={styles.preview}>
-				<Link href={`/blog/${resolveEntityId(post)}`}>
-					<a className={cl({ [styles.active]: active })}>{post.title}</a>
-				</Link>
-				<Text relaxed>
-					<small>{moment(post.createdAt).format("LL")}</small>
-				</Text>
+				<div className={styles.title}>
+					<div className={styles.text}>
+						<Link href={`/blog/${resolveEntityId(post)}`}>
+							<a className={cl({ [styles.active]: active })}>
+								<Truncate lines={2} ellipsis={<span>...</span>}>
+									{post.title}
+								</Truncate>
+							</a>
+						</Link>
+						<Text relaxed>
+							<small>{moment(post.createdAt).format("LL")}</small>
+						</Text>
+					</div>
+					<div className={styles.likes}>
+						<LikeIcon size={15} className={styles.icon} />
+						<span>{post.likes.length}</span>
+					</div>
+				</div>
 			</div>
 		);
 	};

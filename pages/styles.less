@@ -4,19 +4,37 @@
 @import "~@theme/responsive";
 @import "~@theme/breakpoints";
 
+*,
+:after,
+:before {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 html {
+  line-height: @line-height !important;
+  font-family: @font-family !important;
   font-size: @font-size;
   color: @chocolate;
-  max-width: 100%;
-  overflow-x: hidden;
-  min-width: 1400px !important;
-  background: #fff5f7;
+
+  background: white;
+  width: 100%;
+  min-width: 610px;
+  min-height: 100vh;
+
   &:global(.normal) {
     font-size: @font-size;
   }
+
   &:global(.extra) {
     font-size: @font-size-extra;
   }
+
   &:global(.blindness) {
     * {
       background: white !important;
@@ -37,15 +55,9 @@ html {
     }
   }
 }
-body {
-  font-family: @font-family;
-  min-width: 100vw;
-  min-height: 100vh;
-  line-height: @line-height;
-  background: #fff5f7;
-}
 
 a {
+  cursor: pointer;
   color: @blue;
   border-bottom: 1px solid fadeout(@blue, 80%);
   text-decoration: none;
@@ -62,53 +74,117 @@ small {
 
 .main {
   flex-grow: 1;
+  margin-top: 1rem;
   &.centered {
     align-items: center;
     justify-content: center;
     display: flex;
   }
 }
+
 .sidebar {
   width: 250px;
-  background: #382e2e;
+  background: @chocolate;
   position: fixed;
   left: 0;
   top: 0;
+  z-index: 1000;
   display: flex;
   height: 100vh;
+  transition: 0.2s all ease-in-out;
   min-height: 100%;
-  color: white;
-  border: 1px solid #382e2e;
+  height: 100vh;
+  overflow-y: auto;
+  color: @pale-cherry;
+
+  a {
+    color: fadeout(white, 15%);
+    border-color: fadeout(white, 65%);
+    &:hover {
+      color: white;
+      border-color: fadeout(white, 30%);
+    }
+  }
+
+  .sidebarInner {
+    padding: 1rem;
+  }
 }
+
+.reveal {
+  position: fixed;
+  left: 0;
+  transition: 0.2s all ease-in-out;
+  background: @chocolate;
+  z-index: 999;
+  padding: 1rem;
+  top: 0;
+  transform: translateX(-100px);
+
+  .revealButton {
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: darken(@pale-cherry, 10%);
+    &:hover {
+      color: @pale-cherry;
+    }
+  }
+
+  &.active {
+    background: darken(@chocolate, 5%);
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .sidebar {
+    transform: translateX(-300px);
+
+    &.active {
+      transform: translateX(0);
+      box-shadow: 10px 0px 20px rgba(0, 0, 0, 0.27);
+    }
+  }
+
+  .page {
+    padding-left: 0 !important;
+  }
+
+  .reveal {
+    transform: translateX(0);
+
+    &.active {
+      transform: translateX(250px);
+    }
+  }
+
+  .headerInner {
+    padding-left: 80px;
+  }
+}
+
 .page {
   padding-left: 250px;
   min-height: 100vh;
   header {
-    background: #f7e7ea;
+    background: fadeout(black, 99%);
   }
 }
 
 .footer {
-  background: lighten(@chocolate, 5%);
-  padding: 1rem 0;
-  color: lighten(@chocolate, 30%);
+  background: darken(@chocolate, 3%);
+  color: fadeout(white, 10%);
+
   a {
-    color: lighten(@chocolate, 60%);
-    border-color: lighten(@chocolate, 60%);
+    color: fadeout(white, 60%);
+    border-color: fadeout(white, 90%);
     &:hover {
       color: white;
+      background: transparent;
+      border-color: fadeout(white, 30%);
     }
   }
-}
-
-.content {
-  padding-bottom: 2rem;
-}
-
-.container {
-  margin: auto;
-  width: 100%;
-  max-width: 970px;
 }
 
 .hero {

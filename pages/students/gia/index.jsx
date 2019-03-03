@@ -18,6 +18,18 @@ const StudentsGiaPage = () => (
 					"b69137d7413ddee4e9b2bcdb5dd88d171549446716571.pptx"
 				)}
 			/>
+			<Attachment
+				type="Сайт"
+				description="Открытый банк с заданиями и много полезной информации"
+				title="Федеральный институт педагогических измерений"
+				url="http://fipi.ru"
+			/>
+			<Attachment
+				type="Сайт"
+				description="Огромная база с вариантами билетов ГИА и ЕГЭ"
+				title="Сайт Решу ЕГЭ"
+				url="https://ege.sdamgia.ru"
+			/>
 		</div>
 	</div>
 );

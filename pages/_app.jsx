@@ -1,14 +1,18 @@
 import React from "react";
-import App, { Container } from "next/app";
+import App, { Container as NextContainer } from "next/app";
 import cl from "classnames";
 import { PageTransition } from "next-page-transitions";
 import Header from "@components/Header";
 import Loader from "@components/Loader";
+import MenuIcon from "react-feather/dist/icons/menu";
+import XIcon from "react-feather/dist/icons/x";
 import { compose } from "@utils/compose";
 import { createStoreEntity } from "@store";
 import { withAuth } from "@HOC/withAuth";
 import Heading from "@components/Heading";
+import Container from "@components/Container";
 import Text from "@components/Text";
+import Footer from "@components/Footer";
 import withRedux from "next-redux-wrapper";
 import Sidebar from "@components/Sidebar";
 import { Provider } from "react-redux";
@@ -20,23 +24,50 @@ import styles from "./styles";
 bindNProgress();
 moment.locale("ru");
 
+const transitionProps = {
+	timeout: 300,
+	classNames: "page-transition",
+	loadingComponent: <Loader />,
+	loadingDelay: 500,
+	loadingTimeout: {
+		enter: 400,
+		exit: 0
+	},
+	loadingClassNames: "loading-indicator"
+};
+
 class MyApp extends App {
-	// static async getInitialProps(context) {
-	// return {
-	// 	...(context.Component.getInitialProps
-	// 		? await context.Component.getInitialProps(context)
-	// 		: {})
-	// };
-	// }
+	state = {
+		sidebar: false
+	};
+
+	toggleSidebar = () => {
+		this.setState(state => ({
+			sidebar: !state.sidebar
+		}));
+	};
 
 	render() {
 		const { Component, pageProps, store } = this.props;
+		const { sidebar } = this.state;
 
 		return (
-			<Container>
+			<NextContainer>
 				<Provider store={store}>
-					<aside className={styles.sidebar}>
-						<div className="p2 flex">
+					<div
+						className={cl(styles.reveal, {
+							[styles.active]: sidebar
+						})}
+					>
+						<button
+							onClick={this.toggleSidebar}
+							className={styles.revealButton}
+						>
+							{sidebar ? <XIcon /> : <MenuIcon />}
+						</button>
+					</div>
+					<aside className={cl(styles.sidebar, { [styles.active]: sidebar })}>
+						<div className={styles.sidebarInner}>
 							<Sidebar />
 						</div>
 					</aside>
@@ -44,21 +75,23 @@ class MyApp extends App {
 					<div className={cl(styles.page, "flex")}>
 						<div className="flex flex-column grow-1">
 							<header>
-								<div className={cl(styles.container, "p2")}>
-									<Header />
-								</div>
+								<Container>
+									<div className={styles.headerInner}>
+										<Header />
+									</div>
+								</Container>
 							</header>
 							{Component.before}
 							{Component.hero && (
 								<div className={styles.hero}>
-									<div className={styles.container}>
+									<Container>
 										<Heading className={styles.title} size={1}>
 											{Component.hero.title}
 										</Heading>
 										<Text className={styles.description}>
 											{Component.hero.description}
 										</Text>
-									</div>
+									</Container>
 								</div>
 							)}
 							<div
@@ -66,28 +99,23 @@ class MyApp extends App {
 									[styles.centered]: Component.centered
 								})}
 							>
-								<div className={cl(styles.container, "p2")}>
-									<PageTransition
-										timeout={300}
-										classNames="page-transition"
-										loadingComponent={<Loader />}
-										loadingDelay={500}
-										loadingTimeout={{
-											enter: 400,
-											exit: 0
-										}}
-										loadingClassNames="loading-indicator"
-									>
+								<Container>
+									<PageTransition {...transitionProps}>
 										<div className={styles.content}>
 											<Component {...pageProps} />
 										</div>
 									</PageTransition>
-								</div>
+								</Container>
+							</div>
+							<div className={cl(styles.footer, "mt3")}>
+								<Container>
+									<Footer />
+								</Container>
 							</div>
 						</div>
 					</div>
 				</Provider>
-			</Container>
+			</NextContainer>
 		);
 	}
 }
