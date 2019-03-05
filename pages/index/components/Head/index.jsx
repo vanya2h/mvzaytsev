@@ -20,8 +20,11 @@ class Head extends React.PureComponent {
 				</div>
 				<div className={styles.text}>
 					<div className="p3">
-						<Text relaxed>Сайт учителя математики</Text>
-						<Heading size={2}>Зайцев Максим Викторович</Heading>
+						<Heading size={3}>
+							Зайцев Максим Викторович,
+							<br />
+							<small>учитель математики</small>
+						</Heading>
 						<Text>
 							Здравствуйте! Меня зовут{" "}
 							<Link href="/work">

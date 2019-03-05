@@ -2,7 +2,7 @@ import { createSelector } from "reselect";
 import { selectEntity } from "@store/selectors/collections";
 
 export const selectUserId = createSelector(
-	store => store.user.user,
+	store => store.user && store.user.user,
 	userId => userId
 );
 

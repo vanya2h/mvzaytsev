@@ -32,7 +32,7 @@ class AboutMe extends React.PureComponent {
 						}}
 					/>
 					<div className={styles.title}>
-						<Heading size={2}>Я – человек активной жизненной позиции.</Heading>
+						<Heading size={2}>Я – человек активной жизненной позиции</Heading>
 					</div>
 					<div className={styles.imageWithText}>
 						<div className={styles.text}>
