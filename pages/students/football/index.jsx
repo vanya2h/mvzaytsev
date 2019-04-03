@@ -38,8 +38,7 @@ const StudentsGiaPage = () => (
 
 StudentsGiaPage.hero = {
 	title: "Футбольная секция",
-	description:
-		"В этом разделе вы сможете найти полезные материалы для подготовки к экзамену"
+	description: "В этом разделе я расскажу вам о своем хобби"
 };
 
 export default StudentsGiaPage;

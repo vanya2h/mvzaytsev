@@ -9,6 +9,16 @@ const TeacherOfYearPage = () => (
 		<Head>
 			<title>Учитель года 2019 - Максим зайцев</title>
 		</Head>
+		<div className={styles.video}>
+			<iframe
+				width="100%"
+				height="315"
+				src="https://www.youtube.com/embed/lHN_Dn_krZM"
+				frameBorder="0"
+				allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+				allowFullScreen
+			/>
+		</div>
 		<div className={styles.list}>
 			<Attachment
 				type="docx"
