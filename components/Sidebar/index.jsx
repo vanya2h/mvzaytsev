@@ -95,7 +95,7 @@ class Sidebar extends React.PureComponent {
 											Памятки для учащихся
 										</MenuItem>
 										<MenuItem link="/students/football">
-											Футбольная сеция
+											Футбольная секция
 										</MenuItem>
 									</React.Fragment>
 								}
