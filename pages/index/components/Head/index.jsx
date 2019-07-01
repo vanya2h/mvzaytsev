@@ -35,7 +35,7 @@ class Head extends React.PureComponent {
 						</Text>
 						<Text>
 							<small>
-								Я - учитель 5-11-х классов с восьмилетним стажем работы. На
+								Я - учитель 5-11-х классов с девятилетним стажем работы. На
 								данный момент преподаю математику в{" "}
 								<a
 									href="http://www.eduportal44.ru/Kostroma_EDU/Kos-Sch-8/SitePages/%D0%94%D0%BE%D0%BC%D0%B0%D1%88%D0%BD%D1%8F%D1%8F.aspx"
