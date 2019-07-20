@@ -2,20 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import cl from "classnames";
 import Link from "next/link";
-import Home from "react-feather/dist/icons/home";
-import Bookopen from "react-feather/dist/icons/book-open";
-import UsersIcon from "react-feather/dist/icons/users";
-import CodeIcon from "react-feather/dist/icons/code";
-import PenIcon from "react-feather/dist/icons/edit";
-import LoginIcon from "react-feather/dist/icons/log-in";
-import Book from "react-feather/dist/icons/book";
-import BellIcon from "react-feather/dist/icons/bell";
 import { connect } from "react-redux";
 import { userLogout } from "@store/actions/user";
 import * as userSelectors from "@store/selectors/user";
-import UserIcon from "react-feather/dist/icons/user";
-import ArrowRight from "react-feather/dist/icons/arrow-right";
-import Zap from "react-feather/dist/icons/zap";
 import { Menu, MenuItem } from "@components/Menu";
 import Heading from "@components/Heading";
 import Text from "@components/Text";
@@ -37,19 +26,9 @@ class Sidebar extends React.PureComponent {
             Персональный сайт
           </Text>
           <div className="mt3">
-            <Menu>
-              <MenuItem
-                link="/"
-                icon={<Home className={styles.icon} size={18} />}
-              >
-                Главная
-              </MenuItem>
-              <MenuItem
-                link="/blog"
-                icon={<PenIcon className={styles.icon} size={18} />}
-              >
-                Мой блог
-              </MenuItem>
+            <Menu className={styles.menu}>
+              <MenuItem link="/">Главная</MenuItem>
+              <MenuItem link="/blog">Мой блог</MenuItem>
               <MenuItem link="/kostroma">Кострома - душа России</MenuItem>
               <MenuItem
                 sub={
@@ -110,27 +89,13 @@ class Sidebar extends React.PureComponent {
           </div>
         </div>
         <div className={styles.bottom}>
-          <Menu>
+          <Menu className={styles.menu}>
             {!isAuthed ? (
-              <MenuItem
-                link="/auth"
-                icon={<LoginIcon className={styles.icon} size={18} />}
-              >
-                Войти
-              </MenuItem>
+              <MenuItem link="/auth">Войти</MenuItem>
             ) : isAdmin ? (
-              <MenuItem
-                link="/admin"
-                icon={<LoginIcon className={styles.icon} size={18} />}
-              >
-                Админка
-              </MenuItem>
+              <MenuItem link="/admin">Админка</MenuItem>
             ) : (
-              <MenuItem
-                onClick={logout}
-                clickable
-                icon={<LoginIcon className={styles.icon} size={18} />}
-              >
+              <MenuItem onClick={logout} clickable>
                 Выйти
               </MenuItem>
             )}

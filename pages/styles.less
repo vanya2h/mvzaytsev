@@ -36,12 +36,14 @@ html {
   }
 
   &:global(.blindness) {
-    * {
+    *:not(:global(.ignore-blindness)) {
       background: white !important;
       border-color: black !important;
+
       &:not(a) {
         color: black !important;
       }
+
       a {
         color: @blue;
         border-width: 2px !important;

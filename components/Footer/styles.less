@@ -1,28 +1,13 @@
 .footer {
-  display: grid;
-
-  grid: "menu info" auto / auto 300px;
-  grid-column-gap: 2rem;
-
   padding: 2rem 0;
   padding-bottom: 1rem;
 }
 
-.menu {
-  grid-area: menu;
+.container {
+  max-width: 500px;
+  width: 100%;
 }
 
-.info {
-  grid-area: info;
-}
-
-@media screen and (max-width: 915px) {
-  .footer {
-    grid: "info" auto "menu" auto / 100%;
-    grid-auto-flow: column;
-  }
-
-  .menu {
-    margin-top: 1rem;
-  }
+.annotation {
+  opacity: 0.6;
 }

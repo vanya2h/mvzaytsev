@@ -19,6 +19,7 @@
 .table th {
   color: white;
   font-weight: 100;
+  vertical-align: middle;
 }
 
 .table thead {
