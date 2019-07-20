@@ -1,5 +1,25 @@
+.videos {
+  display: flex;
+  flex-direction: row wrap;
+  margin-right: -2rem;
+}
+
+.videos > * {
+  margin-right: 2rem;
+}
+
 .video {
-  max-width: 560px;
+  position: relative;
+  flex-grow: 1;
+  padding-top: 56.25%;
+}
+
+.iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .list {
