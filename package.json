@@ -52,7 +52,7 @@
     "react-avatar": "^3.5.0",
     "react-datepicker": "^1.7.0",
     "react-dom": "^16.6.3",
-    "react-draft-wysiwyg": "^1.13.1",
+    "react-draft-wysiwyg": "^1.14.6",
     "react-fast-compare": "^2.0.4",
     "react-feather": "^1.1.6",
     "react-medium-image-zoom": "^3.0.15",
